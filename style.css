@@ -103,3 +103,54 @@ body {
 .nav-icon::after {
   top: -7px;
 }
+
+/* Animação do Menu */
+.menu-toggle:checked ~ .menu-icon .nav-icon {
+  background: transparent;
+}
+
+.menu-toggle:checked ~ .menu-icon .nav-icon::before {
+  transform: rotate(-45deg);
+  top: 0;
+}
+
+.menu-toggle:checked ~ .menu-icon .nav-icon::after {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+/* Menu de Navegação*/
+.nav-menu {
+  position: fixed;
+  top: 70px; /* Ajuste conforme altura do header */
+  left: -100%;
+  width: 100%;
+  height: calc(100vh - 70px);
+  background-color: var(--dark-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: left 0.3s ease-in-out;
+  border-top: 1px solid var(--dark-tertiary);
+  z-index: 999;
+  gap: 2rem;
+  list-style: none;
+}
+
+.menu-toggle:checked ~ .nav-menu {
+  left: 0;
+}
+
+.nav-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+  font-size: 1.5rem; /* Maior no mobile para toque */
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+}
