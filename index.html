@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Portfólio de Anderson Chaves, aspirante a desenvolvedor full-stack."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anderson Chaves - Aspirante a Desenvolvedor Full-Stack</title>
+  </head>
+  <body>
+    <header class="header" role="banner" aria-label="Cabeçalho principal">
+      <nav class="nav" role="navigation" aria-label="Navegação principal">
+        <div class="logo">AC</div>
+
+        <!-- Menu Sanduíche (Mobile) -->
+        <input
+          type="checkbox"
+          id="menu-toggle"
+          class="menu-toggle"
+          aria-label="Abrir menu de navegação"
+        />
+        <label for="menu-toggle" class="menu-icon">
+          <span class="nav-icon"></span>
+        </label>
+
+        <ul class="nav-menu">
+          <li><a href="#inicio" class="nav-link">Início</a></li>
+          <li><a href="#sobre" class="nav-link">Sobre</a></li>
+          <li><a href="#projetos" class="nav-link">Projetos</a></li>
+          <li><a href="#habilidades" class="nav-link">Habilidades</a></li>
+          <li><a href="#contato" class="nav-link">Contato</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section id="inicio" class="hero">
+        <div id="hero-content">
+          <h1 id="hero-title">
+            Olá, eu sou <span class="highlight">Anderson Chaves</span>
+          </h1>
+          <p id="hero-subtitle">Aspirante a Desenvolvedor Web Full Stack</p>
+          <p id="hero-description">
+            Transformando ideias em experiências digitais incríveis através de
+            código limpo e design moderno.
+          </p>
+          <div div="hero-buttons">
+            <a href="#" class="btn btn-primary">Ver Projetos</a>
+            <a href="#" class="btn btn-secondary">Entre em Contato</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <div class="image-placeholder">
+            <img src="images/image-profile.png" alt="Foto de Anderson Chaves" />
+          </div>
+        </div>
+      </section>
+
+      <!-- Sobre Section -->
+      <section id="sobre" class="sobre">
+        <div class="container">
+          <h2 class="section-title">Sobre Mim</h2>
+          <div class="sobre-content">
+            <div class="sobre-text">
+              <p>
+                Sou Anderson Chaves, um aspirante a desenvolvedor full-stack,
+                atualmente focado em aprimorar minhas habilidades em
+                desenvolvimento web.
+              </p>
+              <p>
+                Faço parte da "turma 7 - Selene" do programa Alpha edtech, onde
+                estou adquirindo conhecimentos valiosos para minha carreira.
+                Esta sendo uma jornada incrível de aprendizado e crescimento
+                profissional.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Habilidades Section -->
+      <section id="habilidades" class="habilidades">
+        <div class="container">
+          <h2 class="section-title">Habilidades</h2>
+          <div class="habilidades-grid">
+            <div class="habilidade-card">
+              <div class="habilidade-icon">💻</div>
+              <h3>Front-end</h3>
+              <ul>
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>JavaScript</li>
+              </ul>
+            </div>
+
+            <div class="habilidade-card">
+              <div class="habilidade-icon">🛠️</div>
+              <h3>Ferramentas</h3>
+              <ul>
+                <li>Git & GitHub</li>
+                <li>VS Code</li>
+                <li>Figma</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projetos Section -->
+      <section id="projetos" class="projetos">
+        <div class="container">
+          <h2 class="section-title">Projetos em Destaque</h2>
+          <div class="projetos-grid">
+            <div class="projeto-card">
+              <div class="projeto-image">
+                <img
+                  src="./assets/images/image-project-html-css-explorer.jpg"
+                  alt="imagem do projeto HTML e CSS Explorer sem limites"
+                />
+              </div>
+              <div class="projeto-content">
+                <h3>HTML e CSS Explorer sem limites</h3>
+                <p>
+                  Projeto de estudos focado em explorar HTML, CSS e um pouco de
+                  JavaScript. Criação de layouts responsivos e interativos.
+                </p>
+                <div class="projeto-tags">
+                  <span class="tag">HTML</span>
+                  <span class="tag">CSS3</span>
+                  <span class="tag">JavaScript</span>
+                </div>
+                <a
+                  href="https://andersonchavess.github.io/HTML-e-CSS-Explorer-sem-limites/"
+                  target="_blank"
+                  rel="noopener nooferrer"
+                  class="projeto-link"
+                  >Ver Projeto →</a
+                >
+              </div>
+            </div>
+            <div class="projeto-card">
+              <div class="projeto-image"></div>
+              <div class="projeto-content">
+                <h3>Alpha Learning</h3>
+                <p>
+                  Projeto de estudos para aprendizagem da linguagem markdown,
+                  onde neste projeto foi feito um resumo dos principais tópicos
+                  estudados desde o inicio das aulas do Alpha até o momento.
+                </p>
+                <div class="projeto-tags">
+                  <span class="tag">Markdown</span>
+                </div>
+                <a
+                  href=" https://andersonchavess.github.io/Alpha-Learning/"
+                  target="_blank"
+                  rel="noopener nooferrer"
+                  class="projeto-link"
+                  >Ver Projeto →</a
+                >
+              </div>
+            </div>
+            <div class="projeto-card">
+              <figure class="projeto-image">
+                <img
+                  src="./assets/images/image-project-business-trader.jpg"
+                  alt=""
+                />
+              </figure>
+              <div class="projeto-content">
+                <h3>Business Trader - Alta performance</h3>
+                <p>
+                  Website institucional fictício para uma empresa de consultoria
+                  em operações no mercado financeiro realizados por robôs,
+                  focado em alta performance no mercado Forex e Commodities.
+                </p>
+                <div class="projeto-tags">
+                  <span class="tag">HTML5</span>
+                  <span class="tag">CSS3</span>
+                </div>
+                <a
+                  href=" https://andersonchavess.github.io/business-trader-versao-estudo/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="projeto-link"
+                  >Ver Projeto →</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contato Section -->
+      <section id="contato" class="contato">
+        <div class="container">
+          <h2 class="section-title">Entre em Contato</h2>
+          <div class="contato-content">
+            <div class="contato-info">
+              <h3>Vamos trabalhar juntos!</h3>
+              <p>
+                Estou sempre aberto a discutir novos projetos, ideias criativas
+                ou oportunidades para fazer parte da sua visão.
+              </p>
+              <div class="contato-items">
+                <div class="contato-item">
+                  <div>
+                    <h4>Email</h4>
+                    <p>andersonchaves@gmail.com</p>
+                  </div>
+                </div>
+                <div class="contato-item">
+                  <div>
+                    <h4>Telefone</h4>
+                    <p>+55 (99) 99999-9999</p>
+                  </div>
+                </div>
+                <div class="contato-item">
+                  <div>
+                    <h4>Localização</h4>
+                    <p>Pará, PA - Brasil</p>
+                  </div>
+                </div>
+              </div>
+              <div class="social-links">
+                <a
+                  href="https://github.com/AndersonChavesS"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="social-link"
+                  >GitHub</a
+                >
+                <a
+                  href="https://www.linkedin.com/in/developer-anderson-chaves/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="social-link"
+                  >LinkedIn</a
+                >
+              </div>
+            </div>
+            <form class="contato-form">
+              <div class="form-group">
+                <input type="text" placeholder="Seu Nome" required />
+              </div>
+              <div class="form-group">
+                <input type="email" placeholder="Seu Email" required />
+              </div>
+              <div class="form-group">
+                <input type="text" placeholder="Assunto" />
+              </div>
+              <div class="form-group">
+                <textarea
+                  rows="5"
+                  placeholder="Sua Mensagem"
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">
+                Enviar Mensagem
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="footer" role="contentinfo" aria-label="Rodapé">
+      <div class="container">
+        <p>&copy; 2025 Anderson Chaves. Todos os direitos reservados.</p>
+        <p>Desenvolvido com ❤️ e muito código</p>
+      </div>
+    </footer>
+  </body>
+</html>
