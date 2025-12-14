@@ -492,3 +492,185 @@ body {
 #footer i {
   color: #ef4444;
 }
+
+/* =========================================
+   TABLET & DESKTOP OVERRIDES (min-width)
+   ========================================= */
+
+@media (min-width: 768px) {
+  /* Header & Nav */
+  .nav {
+    padding: 1.5rem 20px;
+  }
+
+  .logo {
+    font-size: 1.8rem;
+  }
+
+  .menu-icon {
+    display: none; /* Esconde ícone sanduíche */
+  }
+
+  .nav-menu {
+    position: static;
+    height: auto;
+    width: auto;
+    background-color: transparent;
+    flex-direction: row;
+    border-top: none;
+    padding: 0;
+    gap: 2rem;
+  }
+
+  .nav-link {
+    font-size: 1rem;
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  /* Hero */
+  .hero {
+    flex-direction: row;
+    text-align: left;
+    padding: 8rem 2rem 4rem;
+    gap: 4rem;
+  }
+
+  .hero-title {
+    font-size: 3.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.5rem;
+  }
+
+  .hero-description {
+    font-size: 1.1rem;
+  }
+
+  .hero-buttons {
+    flex-direction: row;
+    justify-content: flex-start;
+    width: auto;
+  }
+
+  .btn {
+    width: auto;
+  }
+
+  .image-placeholder {
+    width: 400px;
+    height: 400px;
+  }
+
+  /* Sections */
+  .section-title {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .sobre {
+    padding: 6rem 2rem;
+  }
+
+  .sobre-text p {
+    font-size: 1.1rem;
+  }
+
+  .sobre-stats {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+  }
+
+  .stat-number {
+    font-size: 3rem;
+  }
+
+  /* Habilidades */
+  .habilidades {
+    padding: 6rem 2rem;
+  }
+
+  .habilidades-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .habilidade-card {
+    padding: 2.5rem;
+  }
+
+  .habilidade-icon {
+    font-size: 3rem;
+  }
+
+  .habilidade-card h3 {
+    font-size: 1.5rem;
+  }
+
+  /* Projetos */
+  .projetos {
+    padding: 6rem 2rem;
+  }
+
+  .projetos-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  .projeto-image {
+    height: 200px;
+  }
+
+  .projeto-content {
+    padding: 2rem;
+  }
+
+  .projeto-content h3 {
+    font-size: 1.5rem;
+  }
+
+  .tag {
+    font-size: 0.85rem;
+    padding: 0.4rem 1rem;
+  }
+
+  /* Contato */
+  .contato {
+    padding: 6rem 2rem;
+  }
+
+  .contato-content {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  .contato-info h3 {
+    font-size: 1.8rem;
+  }
+
+  .contato-item {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .social-links {
+    flex-wrap: nowrap;
+  }
+
+  .social-link {
+    width: auto;
+  }
+}
