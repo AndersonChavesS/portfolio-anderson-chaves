@@ -34,3 +34,72 @@ body {
   margin: 0 auto;
   padding: 0 20px;
 }
+
+/* =========================================
+   MOBILE FIRST STYLES (Base)
+   ========================================= */
+
+/* Header e Navegação */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: var(--dark-bg);
+  z-index: 1000;
+  border-bottom: 1px solid var(--dark-tertiary);
+}
+
+.nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+/* Menu Sanduíche (Mobile Default) */
+.menu-toggle {
+  display: none; /* Checkbox sempre invisível */
+}
+
+.menu-icon {
+  display: block; /* Visível no mobile */
+  cursor: pointer;
+  padding: 10px;
+  z-index: 1001;
+}
+
+.nav-icon {
+  background: var(--text-primary);
+  display: block;
+  height: 2px;
+  position: relative;
+  transition: background 0.2s ease-out;
+  width: 24px;
+}
+
+.nav-icon::before,
+.nav-icon::after {
+  background: var(--text-primary);
+  content: "";
+  display: block;
+  height: 100%;
+  position: absolute;
+  transition: all 0.2s ease-out;
+  width: 100%;
+}
+
+.nav-icon::before {
+  top: 7px;
+}
+
+.nav-icon::after {
+  top: -7px;
+}
