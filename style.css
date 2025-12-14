@@ -357,3 +357,68 @@ body {
   left: 0;
   color: var(--primary-color);
 }
+
+/* Projetos Section */
+.projetos {
+  padding: 4rem 1.5rem;
+  background-color: var(--dark-secondary);
+}
+
+.projetos-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* Mobile: 1 coluna */
+  gap: 2rem;
+}
+
+.projeto-card {
+  background-color: var(--dark-tertiary);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.projeto-image img {
+  width: 100%;
+  height: 180px;
+  background: var(--dark-tertiary);
+  position: relative;
+}
+
+.projeto-content {
+  padding: 1.5rem;
+}
+
+.projeto-content h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
+  color: var(--text-primary);
+}
+
+.projeto-content p {
+  color: var(--text-secondary);
+  margin-bottom: 1.2rem;
+  font-size: 0.95rem;
+}
+
+.projeto-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.2rem;
+}
+
+.tag {
+  background-color: var(--dark-bg);
+  color: var(--primary-color);
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  border: 1px solid var(--primary-color);
+}
+
+.projeto-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+}
