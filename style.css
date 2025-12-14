@@ -674,3 +674,211 @@ body {
     width: auto;
   }
 }
+
+/* =========================================
+   LARGE SCREENS (Extra Overrides)
+   ========================================= */
+
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .container {
+    max-width: 1520px;
+  }
+
+  .hero-title {
+    font-size: 4rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.8rem;
+  }
+
+  .hero-description {
+    font-size: 1.25rem;
+  }
+
+  .section-title {
+    font-size: 3rem;
+  }
+
+  .image-placeholder {
+    width: 500px;
+    height: 500px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .container {
+    max-width: 1800px;
+  }
+
+  .hero-title {
+    font-size: 4.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 2rem;
+  }
+
+  .section-title {
+    font-size: 3.5rem;
+  }
+
+  .habilidades-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .projetos-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 2560px) {
+  .container {
+    max-width: 2400px;
+  }
+
+  .nav {
+    padding: 2rem 20px;
+  }
+
+  .logo {
+    font-size: 2.5rem;
+  }
+
+  .nav-menu {
+    gap: 3rem;
+  }
+
+  .nav-link {
+    font-size: 1.2rem;
+  }
+
+  .hero {
+    padding: 10rem 2rem 6rem;
+    gap: 6rem;
+  }
+
+  .hero-title {
+    font-size: 5.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 2.5rem;
+  }
+
+  .hero-description {
+    font-size: 1.5rem;
+  }
+
+  .btn {
+    padding: 1.5rem 3rem;
+    font-size: 1.2rem;
+  }
+
+  .image-placeholder {
+    width: 600px;
+    height: 600px;
+  }
+
+  .section-title {
+    font-size: 4rem;
+    margin-bottom: 4rem;
+  }
+
+  .sobre,
+  .habilidades,
+  .projetos,
+  .contato {
+    padding: 8rem 2rem;
+  }
+
+  .sobre-text p {
+    font-size: 1.3rem;
+  }
+
+  .stat-number {
+    font-size: 4rem;
+  }
+
+  .stat-label {
+    font-size: 1.2rem;
+  }
+
+  .habilidade-card {
+    padding: 3rem;
+  }
+
+  .habilidade-icon {
+    font-size: 4rem;
+  }
+
+  .habilidade-card h3 {
+    font-size: 1.8rem;
+  }
+
+  .habilidade-card li {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+
+  .projeto-image {
+    height: 280px;
+  }
+
+  .projeto-content {
+    padding: 2.5rem;
+  }
+
+  .projeto-content h3 {
+    font-size: 1.8rem;
+  }
+
+  .projeto-content p {
+    font-size: 1.1rem;
+  }
+
+  .tag {
+    font-size: 1rem;
+    padding: 0.5rem 1.2rem;
+  }
+
+  .contato-info h3 {
+    font-size: 2.2rem;
+  }
+
+  .contato-info > p {
+    font-size: 1.2rem;
+  }
+
+  .contato-icon {
+    font-size: 2rem;
+  }
+
+  .contato-item h4 {
+    font-size: 1.2rem;
+  }
+
+  .contato-item p {
+    font-size: 1.1rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 1.5rem;
+    font-size: 1.2rem;
+  }
+
+  .footer {
+    padding: 3rem;
+  }
+
+  .footer p {
+    font-size: 1.1rem;
+  }
+}
