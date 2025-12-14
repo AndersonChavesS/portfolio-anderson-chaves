@@ -1,0 +1,36 @@
+:root {
+  --primary-color: #3b82f6; /* Azul mais sóbrio */
+  --secondary-color: #60a5fa;
+  --dark-bg: #121212; /* Fundo escuro neutro */
+  --dark-secondary: #1e1e1e;
+  --dark-tertiary: #2a2a2a;
+  --text-primary: #f3f4f6;
+  --text-secondary: #9ca3af;
+  --gradient: var(--primary-color); /* Remove gradiente, usa cor sólida */
+  --card-shadow: none; /* Remove sombras para design flat */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// Scroll suave para âncoras
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--dark-bg);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
