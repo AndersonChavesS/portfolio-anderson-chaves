@@ -876,37 +876,46 @@ body {
     padding: 0.5rem 1.2rem;
   }
 
+  .contato-content{
+    width: 1160px;
+  }
+
   .contato-info h3 {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
   }
 
   .contato-info > p {
-    font-size: 1.2rem;
+    font-size: 1.6rem;
   }
 
   .contato-icon {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
 
   .contato-item h4 {
-    font-size: 1.2rem;
+    font-size: 1.6rem;
   }
 
   .contato-item p {
-    font-size: 1.1rem;
+    font-size: 1.6rem;
+  }
+
+  .social-link {
+    font-size: 1.6rem;
+    padding: 1.2rem 2rem;
   }
 
   .form-group input,
-  .form-group textarea {
+  .form-group textarea, .btn-primary {
     padding: 1.5rem;
-    font-size: 1.2rem;
+    font-size: 1.6rem;
   }
 
-  .footer {
+  #footer {
     padding: 3rem;
   }
 
-  .footer p {
-    font-size: 1.1rem;
+  #footer p {
+    font-size: 1.8rem;
   }
 }
