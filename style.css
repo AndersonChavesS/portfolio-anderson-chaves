@@ -683,6 +683,9 @@ body {
   .container {
     max-width: 1320px;
   }
+  #inicio {
+    padding: 0 140px 0;
+  }
 }
 
 @media (min-width: 1600px) {
@@ -740,7 +743,15 @@ body {
 
 @media (min-width: 2560px) {
   .container {
-    max-width: 2400px;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #inicio {
+    padding: 0 700px 0;
   }
 
   .nav {
@@ -748,7 +759,7 @@ body {
   }
 
   .logo {
-    font-size: 2.5rem;
+    font-size: 3rem;
   }
 
   .nav-menu {
@@ -756,29 +767,29 @@ body {
   }
 
   .nav-link {
-    font-size: 1.2rem;
+    font-size: 2.2rem;
   }
 
-  .hero {
-    padding: 10rem 2rem 6rem;
-    gap: 6rem;
+  #hero-content {
+    margin-right: 150px;
   }
 
-  .hero-title {
-    font-size: 5.5rem;
+  #hero-title {
+    font-size: 3.5rem;
   }
 
-  .hero-subtitle {
+  #hero-subtitle {
     font-size: 2.5rem;
   }
 
-  .hero-description {
-    font-size: 1.5rem;
+  #hero-description {
+    font-size: 2rem;
   }
 
   .btn {
     padding: 1.5rem 3rem;
     font-size: 1.2rem;
+    width: 200px;
   }
 
   .image-placeholder {
@@ -791,26 +802,27 @@ body {
     margin-bottom: 4rem;
   }
 
-  .sobre,
-  .habilidades,
-  .projetos,
-  .contato {
+  #sobre,
+  #habilidades,
+  #projetos,
+  #contato {
     padding: 8rem 2rem;
   }
 
   .sobre-text p {
-    font-size: 1.3rem;
+    font-size: 1.8rem;
+
+    max-width: fit-content;
   }
 
-  .stat-number {
-    font-size: 4rem;
-  }
-
-  .stat-label {
-    font-size: 1.2rem;
+  .habilidades-grid {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
   }
 
   .habilidade-card {
+    width: 450px;
     padding: 3rem;
   }
 
@@ -819,16 +831,27 @@ body {
   }
 
   .habilidade-card h3 {
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
 
   .habilidade-card li {
-    font-size: 1.1rem;
+    font-size: 2rem;
+    padding: 0.5rem 0 0 2rem;
     margin-bottom: 1rem;
   }
 
-  .projeto-image {
-    height: 280px;
+  .projetos-grid {
+    display: flex;
+    justify-content: center;
+  }
+
+  .projeto-card {
+    width: 375px;
+  }
+
+  .projeto-image img {
+    height: 220px;
+    border: 1px solid;
   }
 
   .projeto-content {
@@ -836,15 +859,20 @@ body {
   }
 
   .projeto-content h3 {
-    font-size: 1.8rem;
+    font-size: 2.4rem;
   }
 
   .projeto-content p {
-    font-size: 1.1rem;
+    font-size: 1.8rem;
+    height: 250px;
+  }
+
+  .projeto-link {
+    font-size: 1.6rem;
   }
 
   .tag {
-    font-size: 1rem;
+    font-size: 1.5rem;
     padding: 0.5rem 1.2rem;
   }
 
