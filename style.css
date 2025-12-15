@@ -16,7 +16,7 @@
   box-sizing: border-box;
 }
 
-// Scroll suave para âncoras
+/* Scroll suave para âncoras */
 html {
   scroll-behavior: smooth;
 }
@@ -550,7 +550,7 @@ body {
   }
 
   .hero-title {
-    font-size: 3.5rem;
+    font-size: 2.5rem;
   }
 
   .hero-subtitle {
@@ -572,8 +572,8 @@ body {
   }
 
   .image-placeholder {
-    width: 400px;
-    height: 400px;
+    width: 300px;
+    height: 300px;
   }
 
   /* Sections */
@@ -588,15 +588,6 @@ body {
 
   .sobre-text p {
     font-size: 1.1rem;
-  }
-
-  .sobre-stats {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-  }
-
-  .stat-number {
-    font-size: 3rem;
   }
 
   /* Habilidades */
@@ -676,6 +667,34 @@ body {
 }
 
 /* =========================================
+   DESKTOP (Standard)
+   ========================================= */
+
+@media (min-width: 1024px) {
+  .hero {
+    padding: 8rem 4rem 4rem;
+    gap: 5rem;
+  }
+
+  .hero-title {
+    font-size: 3.5rem;
+  }
+
+  .image-placeholder {
+    width: 400px;
+    height: 400px;
+  }
+
+  .section-title {
+    font-size: 3rem;
+  }
+
+  .nav {
+    padding: 1.5rem 40px;
+  }
+}
+
+/* =========================================
    LARGE SCREENS (Extra Overrides)
    ========================================= */
 
@@ -684,7 +703,14 @@ body {
     max-width: 1320px;
   }
   #inicio {
-    padding: 0 140px 0;
+    display: flex;
+    gap: 0;
+  }
+  .hero-image {
+    max-width: 45%;
+  }
+  #hero-content {
+    max-width: 50%;
   }
 }
 
@@ -716,29 +742,127 @@ body {
 }
 
 @media (min-width: 1920px) {
-  .container {
-    max-width: 1800px;
+  .logo {
+    font-size: 2.5rem;
   }
 
-  .hero-title {
+  .nav-link {
+    font-size: 1.8rem;
+  }
+  .container {
+    max-width: 1200px;
+   
+  }
+  #inicio {
+    padding: 0;
+    height: 250px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-image {
+    max-width: 30%;
+  }
+  #hero-content {
+    max-width: 32%;
+    margin-top: 100px;
+  }
+
+  #hero-title {
     font-size: 4.5rem;
   }
 
-  .hero-subtitle {
+  #hero-subtitle {
     font-size: 2rem;
+  }
+
+  #hero-description {
+    font-size: 1.6rem;
+  }
+
+  .hero-buttons .btn {
+    padding: 1rem 2.5rem;
+    font-size: 1.23rem;
+    width: 180px;
   }
 
   .section-title {
     font-size: 3.5rem;
   }
 
+  .sobre-text p {
+    font-size: 1.8rem;
+  }
+
   .habilidades-grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .projetos-grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
+
+  .habilidade-card h3 {
+    font-size: 2.4rem;
+  }
+  .habilidade-card li {
+    font-size: 2rem;
+    padding: 0.5rem 0 0 2.5rem;
+  }
+
+  .projeto-content h3 {
+    font-size: 2rem;
+  }
+
+  .projeto-content p {
+    font-size: 1.4rem;
+    height: 200px;
+  }
+  .tag {
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+  }
+  .projeto-link {
+    font-size: 1.6rem;
+  }
+
+  .contato-info h3 {
+    font-size: 2rem;
+  }
+
+  .contato-info > p {
+    font-size: 1.4rem;
+  }
+
+  .contato-item h4 {
+    font-size: 1.4rem;
+  }
+
+  .contato-item p {
+    font-size: 1.4rem;
+  }
+
+  .contato-icon {
+    font-size: 2rem;
+  }
+
+  .social-link {
+    font-size: 1.4rem;
+    padding: 1rem 2rem;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .btn-primary {
+    padding: 1.2rem;
+    font-size: 1.4rem;
+  }
+
+  #footer p {
+    font-size: 1.4rem;
+  }
+
+
 }
 
 @media (min-width: 2560px) {
@@ -748,6 +872,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 0;
   }
 
   #inicio {
@@ -786,10 +911,13 @@ body {
     font-size: 2rem;
   }
 
-  .btn {
-    padding: 1.5rem 3rem;
-    font-size: 1.2rem;
-    width: 200px;
+  .btn,
+  .btn-primary,
+  .btn-secondary {
+    padding: 1.5rem 2rem;
+    font-size: 1.4rem;
+    font-weight: semi-bold;
+    width: 190px;
   }
 
   .image-placeholder {
@@ -876,7 +1004,7 @@ body {
     padding: 0.5rem 1.2rem;
   }
 
-  .contato-content{
+  .contato-content {
     width: 1160px;
   }
 
@@ -906,7 +1034,8 @@ body {
   }
 
   .form-group input,
-  .form-group textarea, .btn-primary {
+  .form-group textarea,
+  .btn-primary {
     padding: 1.5rem;
     font-size: 1.6rem;
   }
