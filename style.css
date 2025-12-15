@@ -92,7 +92,7 @@ body {
   display: block;
   height: 100%;
   position: absolute;
-  transition: all 0.2s ease-out;
+  transition: all 0.3s ease-out;
   width: 100%;
 }
 
@@ -122,10 +122,10 @@ body {
 /* Menu de Navegação*/
 .nav-menu {
   position: fixed;
-  top: 70px;
+  top: 50px;
   left: -100%;
   width: 100%;
-  height: calc(100vh - 70px);
+  height: calc(100vh - 50px);
   background-color: var(--dark-bg);
   display: flex;
   flex-direction: column;
@@ -200,6 +200,7 @@ body {
   flex-direction: column;
   gap: 1rem;
   justify-content: center;
+
   width: 100%;
 }
 
@@ -217,12 +218,12 @@ body {
   text-align: center;
 }
 
-.btn-primary {
+#btn-primary {
   background: var(--primary-color);
   color: white;
 }
 
-.btn-secondary {
+#btn-secondary {
   background-color: transparent;
   color: var(--text-primary);
   border: 1px solid var(--text-secondary);
@@ -700,12 +701,27 @@ body {
 
 @media (min-width: 1400px) {
   .container {
-    max-width: 1320px;
+    max-width: 1160px;
   }
   #inicio {
     display: flex;
-    gap: 0;
+    gap: 10rem;
   }
+
+  #hero-title {
+    max-width: 300px;
+    font-size: 3rem;
+  }
+  #hero-subtitle {
+    max-width: 400px;
+    font-size: 1.8rem;
+  }
+
+  #hero-description {
+    max-width: 400px;
+    font-size: 1.6rem;
+  }
+
   .hero-image {
     max-width: 45%;
   }
@@ -716,7 +732,13 @@ body {
 
 @media (min-width: 1600px) {
   .container {
-    max-width: 1520px;
+    max-width: 1160px;
+  }
+
+  #inicio {
+    justify-content: center;
+    align-items: center;
+    gap: 6rem;
   }
 
   .hero-title {
@@ -729,6 +751,10 @@ body {
 
   .hero-description {
     font-size: 1.25rem;
+  }
+
+  .hero-image {
+    max-width: 35%;
   }
 
   .section-title {
@@ -749,34 +775,36 @@ body {
   .nav-link {
     font-size: 1.8rem;
   }
-  .container {
-    max-width: 1200px;
-   
-  }
+
   #inicio {
+    max-width: 100%;
     padding: 0;
-    height: 250px;
+
     justify-content: center;
     align-items: center;
+    gap: 8rem;
   }
 
   .hero-image {
-    max-width: 30%;
+    max-width: 25%;
   }
   #hero-content {
-    max-width: 32%;
+    max-width: 30%;
     margin-top: 100px;
   }
 
   #hero-title {
-    font-size: 4.5rem;
+    max-width: 350px;
+    font-size: 3.5rem;
   }
 
   #hero-subtitle {
+    max-width: 450px;
     font-size: 2rem;
   }
 
   #hero-description {
+    max-width: 450px;
     font-size: 1.6rem;
   }
 
@@ -861,22 +889,11 @@ body {
   #footer p {
     font-size: 1.4rem;
   }
-
-
 }
 
 @media (min-width: 2560px) {
   .container {
     max-width: 1200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 0;
-  }
-
-  #inicio {
-    padding: 0 700px 0;
   }
 
   .nav {
@@ -895,8 +912,20 @@ body {
     font-size: 2.2rem;
   }
 
+  #inicio {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 6rem;
+  }
+
   #hero-content {
-    margin-right: 150px;
+    max-width: 20%;
+  }
+
+  .hero-image {
+    max-width: 25%;
   }
 
   #hero-title {
@@ -911,13 +940,12 @@ body {
     font-size: 2rem;
   }
 
-  .btn,
-  .btn-primary,
-  .btn-secondary {
-    padding: 1.5rem 2rem;
-    font-size: 1.4rem;
+  #btn-primary,
+  #btn-secondary {
+    padding: 1rem 2rem;
+    font-size: 1.55rem;
     font-weight: semi-bold;
-    width: 190px;
+    width: 200px;
   }
 
   .image-placeholder {
