@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 :root {
   --primary-color: #3b82f6; /* Azul mais sóbrio */
   --secondary-color: #60a5fa;
@@ -22,7 +23,7 @@ html {
 }
 
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: var(--dark-bg);
   color: var(--text-primary);
   line-height: 1.6;
@@ -167,9 +168,12 @@ body {
   gap: 3rem;
 }
 
-.hero-content {
-  width: 100%;
+#hero-content {
+  width: 90%;
   max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .hero-title {
@@ -193,6 +197,7 @@ body {
   color: var(--text-secondary);
   margin-bottom: 2rem;
   line-height: 1.6;
+  max-width: 100%;
 }
 
 .hero-buttons {
@@ -200,7 +205,7 @@ body {
   flex-direction: column;
   gap: 1rem;
   justify-content: center;
-
+  align-items: center;
   width: 100%;
 }
 
@@ -218,12 +223,12 @@ body {
   text-align: center;
 }
 
-#btn-primary {
+.btn-primary {
   background: var(--primary-color);
   color: white;
 }
 
-#btn-secondary {
+.btn-secondary {
   background-color: transparent;
   color: var(--text-primary);
   border: 1px solid var(--text-secondary);
@@ -501,7 +506,9 @@ body {
 @media (min-width: 768px) {
   /* Header & Nav */
   .nav {
-    padding: 1.5rem 20px;
+    justify-content: space-around;
+    gap: 22rem;
+    padding: 1rem 30px;
   }
 
   .logo {
@@ -545,31 +552,40 @@ body {
   /* Hero */
   .hero {
     flex-direction: row;
-    text-align: left;
-    padding: 8rem 2rem 4rem;
-    gap: 4rem;
+    gap: 1rem;
   }
 
-  .hero-title {
+  #hero-content {
+    max-width: 45%;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  #hero-title {
+    text-align: left;
     font-size: 2.5rem;
   }
 
-  .hero-subtitle {
+  #hero-subtitle {
     font-size: 1.5rem;
   }
 
-  .hero-description {
+  #hero-description {
     font-size: 1.1rem;
   }
 
   .hero-buttons {
     flex-direction: row;
     justify-content: flex-start;
-    width: auto;
   }
 
   .btn {
-    width: auto;
+    width: 160px;
+    max-width: 100%;
+  }
+
+  .hero-image {
+    max-width: 45%;
   }
 
   .image-placeholder {
@@ -652,6 +668,11 @@ body {
     font-size: 1.8rem;
   }
 
+  .contato-info p {
+    max-width: 90%;
+    font-size: 1.1rem;
+  }
+
   .contato-item {
     flex-direction: row;
     align-items: flex-start;
@@ -672,6 +693,10 @@ body {
    ========================================= */
 
 @media (min-width: 1024px) {
+  .nav {
+    gap: 39rem;
+    padding: 1.5rem 40px;
+  }
   .hero {
     padding: 8rem 4rem 4rem;
     gap: 5rem;
@@ -690,22 +715,147 @@ body {
     font-size: 3rem;
   }
 
-  .nav {
-    padding: 1.5rem 40px;
+  .sobre-content {
+    max-width: 96%;
+    margin: 0 auto;
+  }
+
+  .container {
+    max-width: 96%;
+  }
+
+  .contato-info p {
+    max-width: 80%;
   }
 }
 
 /* =========================================
    LARGE SCREENS (Extra Overrides)
    ========================================= */
+@media (min-width: 1366px) {
+  .nav-link{
+    font-size: 1.3rem;
+  }
+  .hero {
+    gap: 5rem;
+  }
+
+  .hero-content {
+    max-width: 40%;
+  }
+
+  .hero-image {
+    max-width: 30%;
+  }
+
+  #hero-description {
+    max-width: 350px;
+  }
+
+  .sobre .container {
+    max-width: 83%;
+  }
+
+  .sobre-text p{
+    font-size: 1.5rem;
+  }
+ .habilidades .container,
+  .projetos .container {
+    max-width: 80%;
+  }
+
+  .habilidade-card h3 {
+    font-size: 2rem;
+  }
+
+  .habilidade-card li {
+    font-size: 1.5rem;
+    padding: 0.5rem 0 0 2rem;
+  }
+
+  .projeto-image img {
+    height: 200px;
+  }
+
+  .projeto-content h3 {
+    font-size: 1.8rem;
+  }
+
+  .projeto-content p {
+    font-size: 1.1rem;
+    height: 130px;
+  }
+
+  .tag {
+    font-size: 1.1rem;
+    padding: 0.4rem 1rem;
+  }
+
+  .projeto-link {
+    font-size: 1.4rem;
+  }
+
+  .contato .container {
+    max-width: 80%;
+  }
+
+  .contato-info h3 {
+    font-size: 1.9rem;
+  }
+
+  .contato-info > p {
+    font-size: 1.3rem;
+  }
+
+  .contato-item h4 {
+    font-size: 1.2rem;
+  }
+
+  .contato-item p {
+    max-width: 100%;
+    font-size: 1.1rem;
+  }
+
+  .contato-icon {
+    font-size: 1.6rem;
+  }
+
+  .social-link {
+    width: 130px;
+    max-width: 100%;
+    font-size: 1.2rem;
+    padding: 1rem 2rem;
+  }
+
+
+  .form-group textarea {
+    height: 140px;
+  }
+  .form-group input,
+  .form-group textarea,
+  .btn-primary {
+    padding: 1rem;
+    font-size: 1.2rem;
+  }
+
+  #footer p {
+    font-size: 1.2rem;
+  }
+
+
+}
 
 @media (min-width: 1400px) {
-  .container {
-    max-width: 1160px;
+  .nav {
+    justify-content: space-between;
   }
+
   #inicio {
-    display: flex;
-    gap: 10rem;
+    gap: 9.8rem;
+  }
+
+  .container {
+    max-width: 84%;
   }
 
   #hero-title {
@@ -723,57 +873,71 @@ body {
   }
 
   .hero-image {
-    max-width: 45%;
+    max-width: 30%;
   }
-  #hero-content {
-    max-width: 50%;
+
+  .projeto-content p {
+    font-size: 1.2rem;
+    height: 150px;
+  }
+
+  .contato-info h3 {
+    font-size: 1.9rem;
+  }
+
+  .contato-info p {
+    font-size: 1.2rem;
+  }
+
+  .contato-item h4 {
+    font-size: 1.3rem;
+  }
+
+  .contato-item p {
+    font-size: 1.2rem;
+  }
+
+  .contato-icon {
+    font-size: 1.8rem;
+  }
+
+  .social-link {
+    font-size: 1.3rem;
+    padding: 1rem 2rem;
+  }
+
+  .form-group textarea {
+    height: 160px;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .btn-primary {
+    padding: 1rem;
+    font-size: 1.3rem;
+  }
+
+  #footer p {
+    font-size: 1.3rem;
   }
 }
 
 @media (min-width: 1600px) {
-  .container {
-    max-width: 1160px;
+  .hero {
+    margin-top: 7rem;
+  }
+  .nav {
+    padding: 2rem 50px;
+    max-width: 100%;
+    justify-content: space-around;
   }
 
-  #inicio {
-    justify-content: center;
-    align-items: center;
-    gap: 6rem;
-  }
-
-  .hero-title {
-    font-size: 4rem;
-  }
-
-  .hero-subtitle {
-    font-size: 1.8rem;
-  }
-
-  .hero-description {
-    font-size: 1.25rem;
-  }
-
-  .hero-image {
-    max-width: 35%;
-  }
-
-  .section-title {
+  .logo {
     font-size: 3rem;
   }
 
-  .image-placeholder {
-    width: 500px;
-    height: 500px;
-  }
-}
-
-@media (min-width: 1920px) {
-  .logo {
-    font-size: 2.5rem;
-  }
-
   .nav-link {
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
 
   #inicio {
@@ -782,25 +946,17 @@ body {
 
     justify-content: center;
     align-items: center;
-    gap: 8rem;
-  }
-
-  .hero-image {
-    max-width: 25%;
-  }
-  #hero-content {
-    max-width: 30%;
-    margin-top: 100px;
+    gap: 3rem;
   }
 
   #hero-title {
-    max-width: 350px;
-    font-size: 3.5rem;
+    max-width: 450px;
+    font-size: 3.2rem;
   }
 
   #hero-subtitle {
-    max-width: 450px;
-    font-size: 2rem;
+    max-width: 400px;
+    font-size: 1.9rem;
   }
 
   #hero-description {
@@ -808,34 +964,49 @@ body {
     font-size: 1.6rem;
   }
 
-  .hero-buttons .btn {
-    padding: 1rem 2.5rem;
-    font-size: 1.23rem;
-    width: 180px;
+  .hero-buttons {
+    font-size: 1.2rem;
+    max-width: 100%;
   }
 
-  .section-title {
-    font-size: 3.5rem;
+  .btn {
+    width: 180px;
+    font-size: 1.2rem;
+  }
+
+  .hero-image {
+    max-width: 35%;
+  }
+
+  .hero-image .image-placeholder {
+    width: 100%;
+    height: 100%;
+  }
+
+  .container {
+    max-width: 91%;
   }
 
   .sobre-text p {
     font-size: 1.8rem;
   }
 
-  .habilidades-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .projetos-grid {
-    grid-template-columns: repeat(3, 1fr);
+  .habilidades .container,
+  .projetos .container {
+    max-width: 87%;
   }
 
   .habilidade-card h3 {
-    font-size: 2.4rem;
+    font-size: 2.5rem;
   }
+
   .habilidade-card li {
     font-size: 2rem;
     padding: 0.5rem 0 0 2.5rem;
+  }
+
+  .projeto-image img {
+    height: 210px;
   }
 
   .projeto-content h3 {
@@ -844,14 +1015,20 @@ body {
 
   .projeto-content p {
     font-size: 1.4rem;
-    height: 200px;
+    height: 180px;
   }
+
   .tag {
-    font-size: 1.2rem;
-    padding: 0.5rem 1rem;
+    font-size: 1.3rem;
+    padding: 0.5rem 1.2rem;
   }
+
   .projeto-link {
     font-size: 1.6rem;
+  }
+
+  .contato .container {
+    max-width: 85%;
   }
 
   .contato-info h3 {
@@ -891,188 +1068,154 @@ body {
   }
 }
 
-@media (min-width: 2560px) {
-  .container {
-    max-width: 1200px;
-  }
-
+@media (min-width: 1920px) {
   .nav {
-    padding: 2rem 20px;
+    padding: 2rem 70px;
+
+    gap: 60rem;
   }
 
-  .logo {
-    font-size: 3rem;
+  .sobre .container,
+  .contato .container {
+    max-width: 90%;
   }
 
-  .nav-menu {
-    gap: 3rem;
-  }
-
-  .nav-link {
-    font-size: 2.2rem;
-  }
-
-  #inicio {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 6rem;
-  }
-
-  #hero-content {
-    max-width: 20%;
-  }
-
-  .hero-image {
-    max-width: 25%;
-  }
-
-  #hero-title {
-    font-size: 3.5rem;
-  }
-
-  #hero-subtitle {
-    font-size: 2.5rem;
-  }
-
-  #hero-description {
-    font-size: 2rem;
-  }
-
-  #btn-primary,
-  #btn-secondary {
-    padding: 1rem 2rem;
-    font-size: 1.55rem;
-    font-weight: semi-bold;
-    width: 200px;
-  }
-
-  .image-placeholder {
-    width: 600px;
-    height: 600px;
-  }
-
-  .section-title {
-    font-size: 4rem;
-    margin-bottom: 4rem;
-  }
-
-  #sobre,
-  #habilidades,
-  #projetos,
-  #contato {
-    padding: 8rem 2rem;
-  }
-
-  .sobre-text p {
-    font-size: 1.8rem;
-
-    max-width: fit-content;
-  }
-
-  .habilidades-grid {
-    display: flex;
-    justify-content: center;
-    gap: 4rem;
-  }
-
-  .habilidade-card {
-    width: 450px;
-    padding: 3rem;
-  }
-
-  .habilidade-icon {
-    font-size: 4rem;
-  }
-
-  .habilidade-card h3 {
-    font-size: 2rem;
-  }
-
-  .habilidade-card li {
-    font-size: 2rem;
-    padding: 0.5rem 0 0 2rem;
-    margin-bottom: 1rem;
-  }
-
-  .projetos-grid {
-    display: flex;
-    justify-content: center;
-  }
-
-  .projeto-card {
-    width: 375px;
-  }
-
-  .projeto-image img {
-    height: 220px;
-    border: 1px solid;
-  }
-
-  .projeto-content {
-    padding: 2.5rem;
-  }
-
-  .projeto-content h3 {
-    font-size: 2.4rem;
-  }
-
-  .projeto-content p {
-    font-size: 1.8rem;
-    height: 250px;
-  }
-
-  .projeto-link {
-    font-size: 1.6rem;
-  }
-
-  .tag {
-    font-size: 1.5rem;
-    padding: 0.5rem 1.2rem;
-  }
-
-  .contato-content {
-    width: 1160px;
+  .habilidades .container,
+  .projetos .container,
+  .contato .container {
+    max-width: 86%;
   }
 
   .contato-info h3 {
+    font-size: 2.2rem;
+  }
+  .contato-info > p {
+    max-width: 60%;
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 2560px) {
+  #hero-content {
+    max-width: 42%;
+  }
+
+  .hero-image {
+    max-width: 30%;
+  }
+
+  #hero-title {
+    max-width: 100%;
+    font-size: 5.5rem;
+  }
+
+  #hero-subtitle {
+    max-width: 45%;
+    font-size: 3rem;
+  }
+
+  #hero-description {
+    max-width: 65%;
+    font-size: 2.3rem;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 300px;
+    font-size: 2rem;
+  }
+
+  .sobre .container {
+    max-width: 80%;
+  }
+
+  .sobre-text p {
+    font-size: 2.3rem;
+  }
+
+  .habilidades .container {
+    max-width: 77%;
+  }
+
+  .habilidade-card h3 {
+    font-size: 3.5rem;
+  }
+
+  .habilidade-card li {
+    font-size: 3rem;
+    padding: 0.7rem 0 0 3.5rem;
+  }
+
+  .projetos .container {
+    max-width: 77%;
+  }
+
+  .projeto-image img {
+    object-fit: cover;
+  }
+
+  .projeto-content h3 {
+    font-size: 3rem;
+  }
+
+  .projeto-content p {
+    font-size: 2rem;
+    height: 250px;
+  }
+
+  .tag {
+    font-size: 2rem;
+    padding: 0.7rem 1.5rem;
+  }
+
+  .projeto-link {
     font-size: 2.5rem;
   }
 
-  .contato-info > p {
-    font-size: 1.6rem;
+  .contato .container {
+    max-width: 77%;
   }
 
-  .contato-icon {
-    font-size: 2.2rem;
+  .contato-info h3 {
+    font-size: 3rem;
+  }
+
+  .contato-info > p {
+    font-size: 2rem;
   }
 
   .contato-item h4 {
-    font-size: 1.6rem;
+    max-width: 100%;
+    font-size: 2rem;
   }
 
   .contato-item p {
-    font-size: 1.6rem;
+    max-width: 100%;
+    font-size: 2rem;
+  }
+
+  .contato-icon {
+    font-size: 3rem;
   }
 
   .social-link {
-    font-size: 1.6rem;
-    padding: 1.2rem 2rem;
+    width: 300px;
+    font-size: 2rem;
+    padding: 1.5rem 3rem;
+  }
+
+  .form-group textarea {
+    height: 180px;
   }
 
   .form-group input,
   .form-group textarea,
   .btn-primary {
-    padding: 1.5rem;
-    font-size: 1.6rem;
-  }
-
-  #footer {
-    padding: 3rem;
+    padding: 2rem;
+    font-size: 2rem;
   }
 
   #footer p {
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
 }
