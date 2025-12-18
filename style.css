@@ -732,6 +732,118 @@ body {
 /* =========================================
    LARGE SCREENS (Extra Overrides)
    ========================================= */
+@media (min-width: 1366px) {
+  .nav-link{
+    font-size: 1.3rem;
+  }
+  .hero {
+    gap: 5rem;
+  }
+
+  .hero-content {
+    max-width: 40%;
+  }
+
+  .hero-image {
+    max-width: 30%;
+  }
+
+  #hero-description {
+    max-width: 350px;
+  }
+
+  .sobre .container {
+    max-width: 83%;
+  }
+
+  .sobre-text p{
+    font-size: 1.5rem;
+  }
+ .habilidades .container,
+  .projetos .container {
+    max-width: 80%;
+  }
+
+  .habilidade-card h3 {
+    font-size: 2rem;
+  }
+
+  .habilidade-card li {
+    font-size: 1.5rem;
+    padding: 0.5rem 0 0 2rem;
+  }
+
+  .projeto-image img {
+    height: 200px;
+  }
+
+  .projeto-content h3 {
+    font-size: 1.8rem;
+  }
+
+  .projeto-content p {
+    font-size: 1.1rem;
+    height: 130px;
+  }
+
+  .tag {
+    font-size: 1.1rem;
+    padding: 0.4rem 1rem;
+  }
+
+  .projeto-link {
+    font-size: 1.4rem;
+  }
+
+  .contato .container {
+    max-width: 80%;
+  }
+
+  .contato-info h3 {
+    font-size: 1.9rem;
+  }
+
+  .contato-info > p {
+    font-size: 1.3rem;
+  }
+
+  .contato-item h4 {
+    font-size: 1.2rem;
+  }
+
+  .contato-item p {
+    max-width: 100%;
+    font-size: 1.1rem;
+  }
+
+  .contato-icon {
+    font-size: 1.6rem;
+  }
+
+  .social-link {
+    width: 130px;
+    max-width: 100%;
+    font-size: 1.2rem;
+    padding: 1rem 2rem;
+  }
+
+
+  .form-group textarea {
+    height: 140px;
+  }
+  .form-group input,
+  .form-group textarea,
+  .btn-primary {
+    padding: 1rem;
+    font-size: 1.2rem;
+  }
+
+  #footer p {
+    font-size: 1.2rem;
+  }
+
+
+}
 
 @media (min-width: 1400px) {
   .nav {
