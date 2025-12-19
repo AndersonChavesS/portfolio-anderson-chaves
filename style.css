@@ -28,6 +28,7 @@ body {
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
+  font-size: 16px; /* Base para mobile */
 }
 
 .container {
@@ -60,7 +61,7 @@ body {
 }
 
 .logo {
-  font-size: 1.5rem;
+  font-size: 1.625rem; /* 26px em 16px base */
   font-weight: bold;
   color: var(--text-primary);
 }
@@ -177,7 +178,7 @@ body {
 }
 
 .hero-title {
-  font-size: 2rem;
+  font-size: 2.25rem; /* 36px em 16px base */
   margin-bottom: 1rem;
   line-height: 1.2;
 }
@@ -187,7 +188,7 @@ body {
 }
 
 #hero-subtitle {
-  font-size: 1.2rem;
+  font-size: 1.25rem; /* 20px em 16px base */
   color: var(--text-secondary);
   margin-bottom: 1.5rem;
 }
@@ -252,6 +253,7 @@ body {
   background: var(--dark-tertiary);
   position: relative;
   overflow: hidden;
+  object-fit: cover;
 }
 
 .image-placeholder img {
@@ -262,7 +264,7 @@ body {
 
 /* Section Title */
 .section-title {
-  font-size: 2rem;
+  font-size: 1.875rem; /* 30px em 16px base */
   text-align: center;
   margin-bottom: 2rem;
   position: relative;
@@ -287,7 +289,7 @@ body {
 }
 
 .sobre-text p {
-  font-size: 1rem;
+  font-size: 1.0625rem; /* 17px em 16px base */
   color: var(--text-secondary);
   margin-bottom: 1.5rem;
   line-height: 1.6;
@@ -345,7 +347,7 @@ body {
 }
 
 .habilidade-card h3 {
-  font-size: 1.4rem;
+  font-size: 1.375rem; /* 22px em 16px base */
   margin-bottom: 1rem;
   color: var(--text-primary);
 }
@@ -385,12 +387,15 @@ body {
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .projeto-image {
   width: 100%;
   height: 200px;
-  background: var(--dark-tertiary);
+  background: var(--dark-bg);
   overflow: hidden;
 }
 
@@ -403,10 +408,13 @@ body {
 
 .projeto-content {
   padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .projeto-content h3 {
-  font-size: 1.4rem;
+  font-size: 1.375rem; /* 22px em 16px base */
   margin-bottom: 0.8rem;
   color: var(--text-primary);
 }
@@ -414,7 +422,7 @@ body {
 .projeto-content p {
   color: var(--text-secondary);
   margin-bottom: 1.2rem;
-  font-size: 0.95rem;
+  font-size: 0.9375rem; /* 15px em 16px base */
 }
 
 .projeto-tags {
@@ -422,6 +430,7 @@ body {
   gap: 0.5rem;
   flex-wrap: wrap;
   margin-bottom: 1.2rem;
+  margin-top: auto;
 }
 
 .tag {
@@ -453,8 +462,15 @@ body {
 }
 
 .contato-info h3 {
-  font-size: 1.6rem;
+  font-size: 1.375rem; /* 22px em 16px base */
   margin-bottom: 1rem;
+}
+
+.contato-info > p {
+  font-size: 0.9375rem; /* 15px em 16px base */
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
 }
 
 .contato-item {
@@ -462,6 +478,22 @@ body {
   flex-direction: column; /* Mobile: Stacked */
   gap: 0.5rem;
   margin-bottom: 1.5rem;
+}
+
+.contato-item h4 {
+  font-size: 1rem; /* 16px em 16px base */
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.contato-item p {
+  font-size: 0.9375rem; /* 15px em 16px base */
+  color: var(--text-secondary);
+}
+
+.contato-icon {
+  font-size: 1.5rem; /* 24px em 16px base */
+  color: var(--primary-color);
 }
 
 .social-links {
@@ -480,6 +512,8 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1);
   width: 100%;
   text-align: center;
+  font-size: 0.9375rem; /* 15px em 16px base */
+  font-weight: 500;
 }
 
 .contato-form {
@@ -496,7 +530,8 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   color: var(--text-primary);
-  font-size: 1rem;
+  font-size: 0.9375rem; /* 15px em 16px base */
+  font-family: "Poppins", sans-serif;
 }
 
 /* Footer */
@@ -506,38 +541,46 @@ body {
   text-align: center;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
+
+#footer p {
+  font-size: 0.875rem; /* 14px em 16px base */
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
 #footer i {
   color: #ef4444;
 }
 
 /* =========================================
-   TABLET & DESKTOP OVERRIDES (min-width)
+   TABLET RESPONSIVENESS (768px - 1024px)
    ========================================= */
 
-@media (min-width: 768px) {
-  /* Header & Nav */
-  .nav {
-    justify-content: space-around;
-    gap: 22rem;
-    padding: 1rem 30px;
+@media screen and (min-width: 768px) {
+  /* Base font-size para tablet */
+  body {
+    font-size: 17px;
   }
 
+  /* Header e Navegação */
   .logo {
-    font-size: 1.8rem;
+    font-size: 1.76rem; /* 30px em 17px base */
+  }
+
+  .nav-link {
+    font-size: 1.06rem; /* 18px em 17px base */
   }
 
   .menu-icon {
-    display: none; /* Esconde ícone sanduíche */
+    display: none; /* Remove menu hamburguer no tablet */
   }
 
   .nav-menu {
     position: static;
     height: auto;
-    width: auto;
-    background-color: transparent;
     flex-direction: row;
+    left: 0;
     border-top: none;
-    padding: 0;
     gap: 2rem;
   }
 
@@ -560,74 +603,224 @@ body {
     width: 100%;
   }
 
-  /* Hero */
+  /* Hero Section */
   .hero {
     flex-direction: row;
-    gap: 1rem;
+    padding: 6rem 2rem 3rem;
+    gap: 4rem;
   }
 
   #hero-content {
-    max-width: 45%;
-    align-items: flex-start;
+    width: 55%;
+    max-width: 600px;
     text-align: left;
+    align-items: flex-start;
   }
 
-  #hero-title {
-    text-align: left;
-    font-size: 2.5rem;
+  .hero-title {
+    font-size: 2.65rem; /* ~45px em 17px base */
   }
 
   #hero-subtitle {
-    font-size: 1.5rem;
+    font-size: 1.35rem; /* ~23px em 17px base */
   }
 
   #hero-description {
-    font-size: 1.1rem;
+    font-size: 1.06rem; /* ~18px em 17px base */
   }
 
   .hero-buttons {
     flex-direction: row;
-    justify-content: flex-start;
+    width: auto;
   }
 
   .btn {
-    width: 180px;
-    max-width: 100%;
-    white-space: nowrap;
-    font-size: 0.9rem;
+    width: auto;
+    padding: 1rem 2.5rem;
+    font-size: 1rem; /* Mantém proporção em 18px base */
   }
 
   .hero-image {
-    max-width: 45%;
+    width: 45%;
   }
 
   .image-placeholder {
-    width: 300px;
-    height: 300px;
+    width: 350px;
+    height: 350px;
   }
 
-  /* Sections */
-  .section-title {
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-  }
-
+  /* Sobre Section */
   .sobre {
-    padding: 6rem 2rem;
+    padding: 5rem 2rem;
   }
 
   .sobre-text p {
-    font-size: 1.1rem;
+    font-size: 1.06rem; /* ~18px em 17px base */
   }
 
-  /* Habilidades */
+  .sobre-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  /* Habilidades Section */
   .habilidades {
-    padding: 6rem 2rem;
+    padding: 5rem 2rem;
   }
 
   .habilidades-grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
+  }
+
+  /* Projetos Section */
+  .projetos {
+    padding: 5rem 2rem;
+  }
+
+  .projetos-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .projeto-image {
+    height: 220px;
+  }
+
+  /* Contato Section */
+  .contato {
+    padding: 5rem 2rem;
+  }
+
+  .contato-content {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+
+  .contato-item {
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  .social-link {
+    width: auto;
+  }
+}
+
+/* =========================================
+   DESKTOP RESPONSIVENESS (1024px - 1920px)
+   ========================================= */
+
+@media screen and (min-width: 1024px) {
+  /* Base font-size para desktop */
+  body {
+    font-size: 18px;
+  }
+
+  /* Header */
+  .logo {
+    font-size: 1.89rem; /* 34px em 18px base */
+  }
+
+  .nav-link {
+    font-size: 1.11rem; /* 20px em 18px base */
+  }
+
+  /* Container Adjustments */
+  .container {
+    max-width: 1200px;
+    padding: 0 40px;
+  }
+
+  /* Hero Section */
+  .hero {
+    padding: 8rem 3rem 4rem;
+    gap: 5rem;
+  }
+
+  #hero-content {
+    width: 50%;
+    max-width: 650px;
+  }
+
+  .hero-title {
+    font-size: 2.78rem; /* ~50px em 18px base */
+  }
+
+  #hero-subtitle {
+    font-size: 1.39rem; /* ~25px em 18px base */
+  }
+
+  #hero-description {
+    font-size: 1.11rem; /* ~20px em 18px base */
+    max-width: 550px;
+  }
+
+  .hero-image {
+    width: 50%;
+  }
+
+  .image-placeholder {
+    width: 400px;
+    height: 400px;
+  }
+
+  /* Section Title */
+  .section-title {
+    font-size: 2.22rem; /* ~40px em 18px base */
+    margin-bottom: 3rem;
+  }
+
+  .section-title::after {
+    width: 80px;
+    height: 3px;
+  }
+
+  /* Sobre Section */
+  .sobre {
+    padding: 6rem 3rem;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+  }
+
+  .sobre .container {
+    width: 100%;
+  }
+
+  .sobre-text p {
+    font-size: 1.11rem; /* ~20px em 18px base */
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .sobre-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Habilidades Section */
+  .habilidades {
+    padding: 6rem 3rem;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+  }
+
+  .habilidades .container {
+    width: 100%;
+  }
+
+  .habilidades-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .habilidade-card {
@@ -639,645 +832,490 @@ body {
   }
 
   .habilidade-card h3 {
-    font-size: 1.5rem;
-  }
-
-  /* Projetos */
-  .projetos {
-    padding: 6rem 2rem;
-  }
-
-  .projetos-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  }
-
-  .projeto-image {
-    height: 220px;
-  }
-
-  .projeto-content {
-    padding: 2rem;
-  }
-
-  .projeto-content h3 {
-    font-size: 1.5rem;
-  }
-
-  .tag {
-    font-size: 0.85rem;
-    padding: 0.4rem 1rem;
-  }
-
-  /* Contato */
-  .contato {
-    padding: 6rem 2rem;
-  }
-
-  .contato-content {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  }
-
-  .contato-info h3 {
-    font-size: 1.8rem;
-  }
-
-  .contato-info p {
-    max-width: 90%;
-    font-size: 1.1rem;
-  }
-
-  .contato-item {
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-
-  .social-links {
-    flex-wrap: nowrap;
-  }
-
-  .social-link {
-    width: auto;
-  }
-}
-
-/* =========================================
-   DESKTOP (Standard)
-   ========================================= */
-
-@media (min-width: 1024px) {
-  .nav {
-    gap: 39rem;
-    padding: 1.5rem 40px;
-  }
-  .hero {
-    padding: 8rem 4rem 4rem;
-    gap: 5rem;
-  }
-
-  .hero-title {
-    font-size: 3.5rem;
-  }
-
-  .image-placeholder {
-    width: 400px;
-    height: 400px;
-  }
-
-  .section-title {
-    font-size: 3rem;
-  }
-
-  .sobre-content {
-    max-width: 96%;
-    margin: 0 auto;
-  }
-
-  .container {
-    max-width: 96%;
-  }
-
-  .contato-info p {
-    max-width: 80%;
-  }
-}
-
-/* =========================================
-   LARGE SCREENS (Extra Overrides)
-   ========================================= */
-@media (min-width: 1366px) {
-  .nav-link {
-    font-size: 1.3rem;
-  }
-  .hero {
-    gap: 5rem;
-  }
-
-  .hero-content {
-    max-width: 40%;
-  }
-
-  .hero-image {
-    max-width: 30%;
-  }
-
-  #hero-description {
-    max-width: 350px;
-  }
-
-  .sobre .container {
-    max-width: 83%;
-  }
-
-  .sobre-text p {
-    font-size: 1.5rem;
-  }
-  .habilidades .container,
-  .projetos .container {
-    max-width: 80%;
-  }
-
-  .habilidade-card h3 {
-    font-size: 2rem;
+    font-size: 1.44rem; /* ~26px em 18px base */
   }
 
   .habilidade-card li {
-    font-size: 1.5rem;
-    padding: 0.5rem 0 0 2rem;
+    font-size: 1.06rem; /* ~19px em 18px base */
   }
 
-  .projeto-image img {
-    height: 200px;
-  }
-
-  .projeto-content h3 {
-    font-size: 1.8rem;
-  }
-
-  .projeto-content p {
-    font-size: 1.1rem;
-    height: 130px;
-  }
-
-  .tag {
-    font-size: 1.1rem;
-    padding: 0.4rem 1rem;
-  }
-
-  .projeto-link {
-    font-size: 1.4rem;
-  }
-
-  .contato .container {
-    max-width: 80%;
-  }
-
-  .contato-info h3 {
-    font-size: 1.9rem;
-  }
-
-  .contato-info > p {
-    font-size: 1.3rem;
-  }
-
-  .contato-item h4 {
-    font-size: 1.2rem;
-  }
-
-  .contato-item p {
-    max-width: 100%;
-    font-size: 1.1rem;
-  }
-
-  .contato-icon {
-    font-size: 1.6rem;
-  }
-
-  .social-link {
-    width: 130px;
-    max-width: 100%;
-    font-size: 1.2rem;
-    padding: 1rem 2rem;
-  }
-
-  .form-group textarea {
-    height: 140px;
-  }
-  .form-group input,
-  .form-group textarea,
-  .btn-primary {
-    padding: 1rem;
-    font-size: 1.2rem;
-  }
-
-  #footer p {
-    font-size: 1.2rem;
-  }
-}
-
-@media (min-width: 1400px) {
-  .nav {
-    justify-content: space-between;
-  }
-
-  #inicio {
-    gap: 9.8rem;
-  }
-
-  .container {
-    max-width: 84%;
-  }
-
-  #hero-title {
-    max-width: 300px;
-    font-size: 3rem;
-  }
-  #hero-subtitle {
-    max-width: 400px;
-    font-size: 1.8rem;
-  }
-
-  #hero-description {
-    max-width: 400px;
-    font-size: 1.6rem;
-  }
-
-  .btn-primary,
-  .btn-secondary {
-    width: 180px;
-    font-size: 1rem;
-  }
-
-  .hero-image {
-    max-width: 30%;
+  /* Projetos Section */
+  .projetos {
+    padding: 6rem 3rem;
+    min-height: 600px;
   }
 
   .projetos-grid {
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2.5rem;
-  }
-
-  .projeto-card {
-    max-width: 450px;
-  }
-
-  .projeto-image {
-    height: 230px;
-  }
-
-  .projeto-content {
-    padding: 1.8rem;
-  }
-
-  .projeto-content h3 {
-    font-size: 1.4rem;
-  }
-
-  .projeto-content p {
-    font-size: 1.1rem;
-    min-height: 90px;
-    line-height: 1.6;
-  }
-
-  .contato-info h3 {
-    font-size: 1.9rem;
-  }
-
-  .contato-info p {
-    font-size: 1.2rem;
-  }
-
-  .contato-item h4 {
-    font-size: 1.3rem;
-  }
-
-  .contato-item p {
-    font-size: 1.2rem;
-  }
-
-  .contato-icon {
-    font-size: 1.8rem;
-  }
-
-  .social-link {
-    font-size: 1.3rem;
-    padding: 1rem 2rem;
-  }
-
-  .form-group textarea {
-    height: 160px;
-  }
-
-  .form-group input,
-  .form-group textarea,
-  .btn-primary {
-    padding: 1rem;
-    font-size: 1.3rem;
-  }
-
-  #footer p {
-    font-size: 1.3rem;
-  }
-}
-
-@media (min-width: 1440px) {
-  .projetos-grid {
-    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-  }
-
-  .projeto-card {
-    max-width: 480px;
-  }
-
-  .projeto-image {
-    height: 250px;
-  }
-
-  .projeto-content h3 {
-    font-size: 1.5rem;
-  }
-
-  .projeto-content p {
-    font-size: 1.15rem;
-    min-height: 100px;
-  }
-}
-
-@media (min-width: 1600px) {
-  .hero {
-    margin-top: 7rem;
-  }
-  .nav {
-    padding: 2rem 50px;
-    max-width: 100%;
-    justify-content: space-around;
-  }
-
-  .logo {
-    font-size: 3rem;
-  }
-
-  .nav-link {
-    font-size: 2rem;
-  }
-
-  #inicio {
-    max-width: 100%;
-    padding: 0;
-
-    justify-content: center;
-    align-items: center;
+    grid-template-columns: repeat(3, 1fr);
     gap: 3rem;
   }
 
-  #hero-title {
-    max-width: 450px;
-    font-size: 3.2rem;
+  .projeto-image {
+    height: 240px;
+  }
+
+  .projeto-content {
+    padding: 2rem;
+  }
+
+  .projeto-content h3 {
+    font-size: 1.39rem; /* ~25px em 18px base */
+  }
+
+  .projeto-content p {
+    font-size: 1rem;
+  }
+
+  /* Contato Section */
+  .contato {
+    padding: 6rem 3rem;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+  }
+
+  .contato .container {
+    width: 100%;
+  }
+
+  .contato-content {
+    gap: 5rem;
+  }
+
+  .contato-info h3 {
+    font-size: 1.67rem; /* ~30px em 18px base */
+  }
+
+  .contato-info p {
+    font-size: 1.06rem; /* ~19px em 18px base */
+  }
+
+  .contato-item h4 {
+    font-size: 1.06rem; /* ~19px em 18px base */
+  }
+
+  .contato-item p {
+    font-size: 1rem;
+  }
+
+  /* Footer */
+  #footer {
+    padding: 3rem 2rem;
+  }
+
+  #footer p {
+    font-size: 1rem;
+  }
+}
+
+/* =========================================
+   LARGE DESKTOP (1440px - 1920px)
+   ========================================= */
+
+@media screen and (min-width: 1440px) {
+  /* Base font-size para large desktop */
+  body {
+    font-size: 19px;
+  }
+
+  /* Header */
+  .logo {
+    font-size: 2rem; /* 38px em 19px base */
+  }
+
+  .nav-link {
+    font-size: 1.16rem; /* 22px em 19px base */
+  }
+
+  /* Container Adjustments */
+  .container {
+    max-width: 1400px;
+    padding: 0 60px;
+  }
+
+  /* Hero Section */
+  .hero {
+    padding: 10rem 4rem 5rem;
+    gap: 6rem;
+  }
+
+  .hero-title {
+    font-size: 2.89rem; /* ~55px em 19px base */
   }
 
   #hero-subtitle {
-    max-width: 400px;
-    font-size: 1.9rem;
+    font-size: 1.42rem; /* ~27px em 19px base */
   }
 
   #hero-description {
-    max-width: 450px;
-    font-size: 1.6rem;
-  }
-
-  .hero-buttons {
-    font-size: 1.2rem;
-    max-width: 100%;
+    font-size: 1.16rem; /* ~22px em 19px base */
   }
 
   .btn {
-    width: 180px;
-    font-size: 1.2rem;
+    font-size: 1.05rem; /* ~20px em 19px base */
+    padding: 1.2rem 3rem;
   }
 
-  .hero-image {
-    max-width: 35%;
+  .image-placeholder {
+    width: 450px;
+    height: 450px;
   }
 
-  .hero-image .image-placeholder {
-    width: 100%;
-    height: 100%;
+  /* Section Padding */
+  .sobre,
+  .habilidades,
+  .projetos,
+  .contato {
+    padding: 7rem 4rem;
+    min-height: 700px;
   }
 
-  .container {
-    max-width: 91%;
+  /* Section Title */
+  .section-title {
+    font-size: 2.37rem; /* ~45px em 19px base */
+    margin-bottom: 4rem;
   }
 
-  .sobre-text p {
-    font-size: 1.8rem;
+  /* Habilidades */
+  .habilidades-grid {
+    max-width: 1100px;
+    gap: 4rem;
   }
 
-  .habilidades .container,
-  .projetos .container {
-    max-width: 87%;
+  /* Projetos */
+  .projetos-grid {
+    gap: 3.5rem;
   }
 
-  .habilidade-card h3 {
-    font-size: 2.5rem;
-  }
-
-  .habilidade-card li {
-    font-size: 2rem;
-    padding: 0.5rem 0 0 2.5rem;
-  }
-
-  .projeto-image img {
-    height: 210px;
+  .projeto-image {
+    height: 260px;
   }
 
   .projeto-content h3 {
-    font-size: 2rem;
+    font-size: 1.47rem; /* ~28px em 19px base */
   }
 
   .projeto-content p {
-    font-size: 1.4rem;
-    height: 180px;
-  }
-
-  .tag {
-    font-size: 1.3rem;
-    padding: 0.5rem 1.2rem;
-  }
-
-  .projeto-link {
-    font-size: 1.6rem;
-  }
-
-  .contato .container {
-    max-width: 85%;
-  }
-
-  .contato-info h3 {
-    font-size: 2rem;
-  }
-
-  .contato-info > p {
-    font-size: 1.4rem;
-  }
-
-  .contato-item h4 {
-    font-size: 1.4rem;
-  }
-
-  .contato-item p {
-    font-size: 1.4rem;
-  }
-
-  .contato-icon {
-    font-size: 2rem;
-  }
-
-  .social-link {
-    font-size: 1.4rem;
-    padding: 1rem 2rem;
-  }
-
-  .form-group input,
-  .form-group textarea,
-  .btn-primary {
-    padding: 1.2rem;
-    font-size: 1.4rem;
-  }
-
-  #footer p {
-    font-size: 1.4rem;
+    font-size: 1rem; /* ~19px em 19px base */
   }
 }
 
-@media (min-width: 1920px) {
+/* =========================================
+   4K RESPONSIVENESS (1920px+)
+   ========================================= */
+
+@media screen and (min-width: 1920px) {
+  /* Base font-size para 4K */
+  body {
+    font-size: 24px;
+  }
+
+  /* Container Adjustments */
+  .container {
+    max-width: 1800px;
+    padding: 0 80px;
+  }
+
+  /* Navigation */
   .nav {
-    padding: 2rem 70px;
-
-    gap: 60rem;
+    padding: 1.5rem 80px;
   }
 
-  .sobre .container,
-  .contato .container {
-    max-width: 90%;
+  .logo {
+    font-size: 2.08rem; /* 50px em 24px base */
   }
 
-  .habilidades .container,
-  .projetos .container,
-  .contato .container {
-    max-width: 86%;
+  .nav-link {
+    font-size: 1.25rem; /* 30px em 24px base */
   }
 
-  .contato-info h3 {
-    font-size: 2.2rem;
+  /* Hero Section */
+  .hero {
+    min-height: 100vh;
+    padding: 12rem 5rem 6rem;
+    gap: 8rem;
   }
-  .contato-info > p {
-    max-width: 60%;
-    font-size: 1.5rem;
-  }
-}
 
-@media (min-width: 2560px) {
   #hero-content {
-    max-width: 42%;
+    max-width: 900px;
   }
 
-  .hero-image {
-    max-width: 30%;
-  }
-
-  #hero-title {
-    max-width: 100%;
-    font-size: 5.5rem;
+  .hero-title {
+    font-size: 3.33rem; /* 80px em 24px base */
+    margin-bottom: 1.5rem;
   }
 
   #hero-subtitle {
-    max-width: 45%;
-    font-size: 3rem;
+    font-size: 1.67rem; /* 40px em 24px base */
+    margin-bottom: 2rem;
   }
 
   #hero-description {
-    max-width: 65%;
-    font-size: 2.3rem;
+    font-size: 1.33rem; /* 32px em 24px base */
+    max-width: 750px;
+    margin-bottom: 3rem;
   }
 
-  .btn-primary,
-  .btn-secondary {
-    width: 300px;
-    font-size: 1.8rem;
-    white-space: nowrap;
+  .btn {
+    font-size: 1.25rem; /* 30px em 24px base */
+    padding: 1.5rem 3.5rem;
   }
 
-  .sobre .container {
-    max-width: 80%;
+  .image-placeholder {
+    width: 550px;
+    height: 550px;
   }
 
+  /* Section Padding */
+  .sobre,
+  .habilidades,
+  .projetos,
+  .contato {
+    padding: 10rem 5rem;
+    min-height: 900px;
+  }
+
+  /* Section Title */
+  .section-title {
+    font-size: 2.92rem; /* 70px em 24px base */
+    margin-bottom: 5rem;
+  }
+
+  .section-title::after {
+    width: 100px;
+    height: 4px;
+  }
+
+  /* Sobre Section */
   .sobre-text p {
-    font-size: 2.3rem;
+    font-size: 1.33rem; /* 32px em 24px base */
+    max-width: 1200px;
+    margin-bottom: 2rem;
   }
 
-  .habilidades .container {
-    max-width: 77%;
+  .sobre-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3.5rem;
+    max-width: 1300px;
+  }
+
+  .stat {
+    padding: 2.5rem;
+  }
+
+  .stat-number {
+    font-size: 3rem; /* 72px em 24px base */
+  }
+
+  .stat-label {
+    font-size: 1.17rem; /* 28px em 24px base */
+  }
+
+  /* Habilidades Section */
+  .habilidades-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5rem;
+    max-width: 1500px;
+  }
+
+  .habilidade-card {
+    padding: 3.5rem;
+  }
+
+  .habilidade-icon {
+    font-size: 3.5rem; /* 84px em 24px base */
+    margin-bottom: 1.5rem;
   }
 
   .habilidade-card h3 {
-    font-size: 3.5rem;
+    font-size: 1.83rem; /* 44px em 24px base */
+    margin-bottom: 1.5rem;
   }
 
   .habilidade-card li {
-    font-size: 3rem;
-    padding: 0.7rem 0 0 3.5rem;
+    font-size: 1.25rem; /* 30px em 24px base */
+    margin-bottom: 1rem;
   }
 
-  .projetos .container {
-    max-width: 77%;
+  /* Projetos Section */
+  .projetos-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem;
   }
 
-  .projeto-image img {
-    object-fit: cover;
+  .projeto-image {
+    height: 320px;
+  }
+
+  .projeto-content {
+    padding: 2.5rem;
   }
 
   .projeto-content h3 {
-    font-size: 3rem;
+    font-size: 1.75rem; /* 42px em 24px base */
+    margin-bottom: 1rem;
   }
 
   .projeto-content p {
-    font-size: 2rem;
-    height: 250px;
+    font-size: 1.17rem; /* 28px em 24px base */
+    margin-bottom: 1.5rem;
+  }
+
+  .projeto-tags {
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
   }
 
   .tag {
-    font-size: 2rem;
-    padding: 0.7rem 1.5rem;
+    padding: 0.5rem 1.2rem;
+    font-size: 0.92rem; /* 22px em 24px base */
   }
 
   .projeto-link {
-    font-size: 2.5rem;
+    font-size: 1.17rem; /* 28px em 24px base */
   }
 
-  .contato .container {
-    max-width: 77%;
+  /* Contato Section */
+  .contato-content {
+    gap: 6rem;
   }
 
   .contato-info h3 {
-    font-size: 3rem;
+    font-size: 2rem; /* 48px em 24px base */
+    margin-bottom: 1.5rem;
   }
 
   .contato-info > p {
-    font-size: 2rem;
+    font-size: 1.25rem; /* 30px em 24px base */
+    margin-bottom: 2rem;
   }
 
-  .contato-item h4 {
-    max-width: 100%;
-    font-size: 2rem;
+  .contato-items {
+    margin-bottom: 2rem;
   }
 
-  .contato-item p {
-    max-width: 100%;
-    font-size: 2rem;
+  .contato-item {
+    margin-bottom: 2rem;
   }
 
   .contato-icon {
-    font-size: 3rem;
+    font-size: 1.67rem; /* 40px em 24px base */
+  }
+
+  .contato-item h4 {
+    font-size: 1.25rem; /* 30px em 24px base */
+    margin-bottom: 0.3rem;
+  }
+
+  .contato-item p {
+    font-size: 1.17rem; /* 28px em 24px base */
+  }
+
+  .social-links {
+    gap: 1.5rem;
+    margin-top: 2.5rem;
   }
 
   .social-link {
-    width: 300px;
-    font-size: 2rem;
-    padding: 1.5rem 3rem;
-  }
-
-  .form-group textarea {
-    height: 180px;
+    padding: 1.2rem 2rem;
+    font-size: 1.17rem; /* 28px em 24px base */
   }
 
   .form-group input,
-  .form-group textarea,
-  .btn-primary {
-    padding: 2rem;
-    font-size: 2rem;
+  .form-group textarea {
+    padding: 1.5rem;
+    font-size: 1.17rem; /* 28px em 24px base */
+  }
+
+  .form-group textarea {
+    min-height: 200px;
+  }
+
+  /* Footer */
+  #footer {
+    padding: 4rem 3rem;
   }
 
   #footer p {
-    font-size: 2rem;
+    font-size: 1.17rem; /* 28px em 24px base */
+  }
+}
+
+/* =========================================
+   ULTRA-WIDE 4K (2560px+)
+   ========================================= */
+
+@media screen and (min-width: 2560px) {
+  /* Base font-size para Ultra-wide 4K */
+  body {
+    font-size: 28px;
+  }
+
+  /* Container Adjustments */
+  .container {
+    max-width: 2400px;
+    padding: 0 120px;
+  }
+
+  /* Navigation */
+  .nav {
+    padding: 2rem 120px;
+  }
+
+  .logo {
+    font-size: 2.43rem; /* 68px em 28px base */
+  }
+
+  .nav-link {
+    font-size: 1.43rem; /* 40px em 28px base */
+  }
+
+  /* Hero Section */
+  .hero {
+    padding: 15rem 6rem 8rem;
+  }
+
+  .hero-title {
+    font-size: 3.57rem; /* 100px em 28px base */
+  }
+
+  #hero-subtitle {
+    font-size: 1.79rem; /* 50px em 28px base */
+  }
+
+  #hero-description {
+    font-size: 1.43rem; /* 40px em 28px base */
+    max-width: 900px;
+  }
+
+  .image-placeholder {
+    width: 650px;
+    height: 650px;
+  }
+
+  /* Section Padding */
+  .sobre,
+  .habilidades,
+  .projetos,
+  .contato {
+    padding: 12rem 6rem;
+    min-height: 1100px;
+  }
+
+  /* Section Title */
+  .section-title {
+    font-size: 3.21rem; /* 90px em 28px base */
+  }
+
+  /* Projetos Grid - 4 columns for ultra-wide */
+  .projetos-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5rem;
+    max-width: 2200px;
+    margin: 0 auto;
+  }
+
+  .projeto-image {
+    height: 380px;
   }
 }
