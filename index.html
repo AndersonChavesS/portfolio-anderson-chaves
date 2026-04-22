@@ -15,6 +15,14 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <!-- ===== Animated Mesh Gradient Background ===== -->
+    <div class="bg-wrapper" aria-hidden="true">
+      <div class="blob color-1"></div>
+      <div class="blob color-2"></div>
+      <div class="blob color-3"></div>
+    </div>
+    <!-- =============================================== -->
+
     <header class="header" role="banner" aria-label="Cabeçalho principal">
       <nav class="nav" role="navigation" aria-label="Navegação principal">
         <div class="logo">AC</div>
@@ -37,6 +45,16 @@
           <li><a href="#habilidades" class="nav-link">Habilidades</a></li>
           <li><a href="#contato" class="nav-link">Contato</a></li>
         </ul>
+
+        <!-- Botão de Alternância de Tema -->
+        <button
+          id="theme-toggle"
+          aria-label="Alternar tema claro/escuro"
+          title="Alternar tema"
+        >
+          <span class="theme-icon" aria-hidden="true">🌙</span>
+        </button>
+
       </nav>
     </header>
 

@@ -1,38 +1,221 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 :root {
-  --primary-color: #3b82f6; /* Azul mais sóbrio */
-  --secondary-color: #60a5fa;
-  --dark-bg: #121212; /* Fundo escuro neutro */
-  --dark-secondary: #1e1e1e;
-  --dark-tertiary: #2a2a2a;
-  --text-primary: #f3f4f6;
-  --text-secondary: #9ca3af;
-  --gradient: var(--primary-color); /* Remove gradiente, usa cor sólida */
-  --card-shadow: none; /* Remove sombras para design flat */
+  /* ============================================================
+     SLATE & INDIGO PROFESSIONAL PALETTE
+     ============================================================ */
+
+  --bg-primary: #0F172A;
+  --bg-secondary: #1E293B;
+  --bg-tertiary: #1E293B;
+  
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  
+  --primary-color: #6366F1;
+  --accent-color: #818CF8;
+  
+  --border-color: #334155;
+  --card-border: 1px solid var(--border-color);
+  --card-shadow: none;
+
+  /* Aliases legados */
+  --dark-bg: var(--bg-primary);
+  --dark-secondary: var(--bg-secondary);
+  --dark-tertiary: var(--bg-tertiary);
+
+  /* Misc */
+  --theme-transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* =========================================
+   LIGHT THEME OVERRIDES
+   ========================================= */
+.light-theme {
+  --bg-primary: #F8FAFC;
+  --bg-secondary: #FFFFFF;
+  --bg-tertiary: #F1F5F9;
+  
+  --text-primary: #0F172A;
+  --text-secondary: #64748B;
+  
+  --primary-color: #4F46E5;
+  --accent-color: #4338CA;
+  
+  --border-color: transparent;
+  --card-border: none;
+  --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+
+  --dark-bg: var(--bg-primary);
+  --dark-secondary: var(--bg-secondary);
+  --dark-tertiary: var(--bg-tertiary);
+}
+
+/* =========================================
+   ANIMATED MESH GRADIENT BACKGROUND
+   Técnica: Carrossel horizontal via background-position.
+   O gradiente de 2400px começa e termina transparente,
+   garantindo tile perfeito e loop sem salto visual.
+   ========================================= */
+
+/* --- Desativa os blobs (não usados nesta técnica) --- */
+.blob { display: none; }
+
+/* --- Container / Wrapper --- */
+.bg-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background-color: var(--bg-primary);
+  transition: background-color 0.4s ease;
+}
+
+/* --- Camada 1: gradiente nítido (referência de cor) --- */
+.bg-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  /* Tile de 2400px: transparente → Indigo → Accent → transparente */
+  background: linear-gradient(
+    90deg,
+    rgba(99, 102, 241, 0)   0px,
+    rgba(99, 102, 241, 0.5) 300px,
+    rgba(129, 140, 248, 0.5) 800px,
+    rgba(79, 70, 229, 0.5) 1200px,
+    rgba(129, 140, 248, 0.5) 1600px,
+    rgba(99, 102, 241, 0.5) 2100px,
+    rgba(99, 102, 241, 0)   2400px
+  );
+  background-size: 2400px 100%;
+  background-repeat: repeat-x;
+  opacity: 0.30;
+  animation: carousel-ltr 14s linear infinite;
+}
+
+/* --- Camada 2: a mesma, com blur forte → cria o efeito "mesh" suave --- */
+.bg-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: -15%;
+  background: linear-gradient(
+    90deg,
+    rgba(99, 102, 241, 0)   0px,
+    rgba(99, 102, 241, 0.8) 300px,
+    rgba(129, 140, 248, 0.8) 800px,
+    rgba(79, 70, 229, 0.8) 1200px,
+    rgba(129, 140, 248, 0.8) 1600px,
+    rgba(99, 102, 241, 0.8) 2100px,
+    rgba(99, 102, 241, 0)   2400px
+  );
+  background-size: 2400px 130%;
+  background-repeat: repeat-x;
+  filter: blur(90px);
+  opacity: 0.22;
+  animation: carousel-ltr 14s linear infinite;
+}
+
+/* =====================================================
+   @keyframes carousel-ltr
+   Desloca o background exatamente 1 tile (-2400px),
+   criando um loop perfeito sem salto.
+   Direção visual: cores entram pela esquerda e saem
+   pela direita (movimento de varredura esquerda→direita).
+   ===================================================== */
+@keyframes carousel-ltr {
+  from { background-position: 0px 50%;      }
+  to   { background-position: -2400px 50%;  }
+}
+
+/* ---------------------------------------------------
+   LIGHT THEME — mantém as cores primárias do projeto,
+   reduz a opacidade das camadas para preservar o
+   contraste do texto escuro sobre fundo claro.
+   --------------------------------------------------- */
+.light-theme .bg-wrapper::before {
+  opacity: 0.35;
+}
+
+.light-theme .bg-wrapper::after {
+  opacity: 0.28;
+}
+
+/* --- Acessibilidade: respeita prefers-reduced-motion --- */
+@media (prefers-reduced-motion: reduce) {
+  .bg-wrapper::before,
+  .bg-wrapper::after { animation: none; }
+}
+
+
+
+/* =========================================
+   THEME TOGGLE BUTTON
+   ========================================= */
+#theme-toggle {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.85rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: var(--theme-transition), border-color 0.3s ease, transform 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+#theme-toggle:hover {
+  color: var(--text-primary);
+  border-color: var(--primary-color);
+  transform: scale(1.05);
+}
+
+#theme-toggle .theme-icon {
+  font-size: 1rem;
+  line-height: 1;
+  transition: transform 0.4s ease;
+}
+
+#theme-toggle:hover .theme-icon {
+  transform: rotate(20deg);
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  max-width: 100%;
 }
 
 /* Scroll suave para âncoras */
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   font-family: "Poppins", sans-serif;
-  background-color: var(--dark-bg);
+  background-color: transparent; /* bg-wrapper fixed provê a cor base */
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
+  max-width: 100vw;
   font-size: 16px; /* Base para mobile */
+  transition: var(--theme-transition);
 }
 
 .container {
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -46,9 +229,18 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: var(--dark-bg);
+  /* Glassmorphism: fundo semi-transparente */
+  background-color: rgba(15, 23, 42, 0.45); /* Mais transparência */
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   z-index: 1000;
-  border-bottom: 1px solid var(--dark-tertiary);
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.4s ease, border-color 0.3s ease;
+  overflow: hidden;
+}
+
+.light-theme .header {
+  background-color: rgba(248, 250, 252, 0.45); /* Mais transparência */
 }
 
 .nav {
@@ -58,12 +250,15 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: nowrap; /* Evita quebra de linha no nav */
+  gap: 0.5rem;       /* Espaço mínimo entre elementos */
 }
 
 .logo {
   font-size: 1.625rem; /* 26px em 16px base */
   font-weight: bold;
   color: var(--text-primary);
+  flex-shrink: 0; /* Não comprime o logo */
 }
 
 /* Menu Sanduíche (Mobile Default) */
@@ -124,20 +319,28 @@ body {
 /* Menu de Navegação*/
 .nav-menu {
   position: fixed;
-  top: 50px;
+  top: 0;
   left: -100%;
-  width: 100%;
-  height: calc(100vh - 50px);
-  background-color: var(--dark-bg);
+  width: 100vw;
+  height: 100vh;
+  padding-top: 80px; /* Espaço para o header fixo */
+  background-color: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  transition: left 0.3s ease-in-out;
-  border-top: 1px solid var(--dark-tertiary);
-  z-index: 999;
+  transition: left 0.3s ease-in-out, background-color 0.3s ease;
+  border-top: 1px solid var(--border-color);
+  z-index: 998;
   gap: 2rem;
   list-style: none;
+  overflow-y: auto;
+}
+
+.light-theme .nav-menu {
+  background-color: rgba(248, 250, 252, 0.95);
 }
 
 .menu-toggle:checked ~ .nav-menu {
@@ -170,17 +373,21 @@ body {
 }
 
 #hero-content {
-  width: 90%;
+  width: 100%;
   max-width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* Garante que não ultrapasse a viewport */
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .hero-title {
   font-size: 2.25rem; /* 36px em 16px base */
   margin-bottom: 1rem;
   line-height: 1.2;
+  word-break: break-word;
 }
 
 .highlight {
@@ -191,6 +398,7 @@ body {
   font-size: 1.25rem; /* 20px em 16px base */
   color: var(--text-secondary);
   margin-bottom: 1.5rem;
+  word-break: break-word;
 }
 
 #hero-description {
@@ -199,11 +407,13 @@ body {
   margin-bottom: 2rem;
   line-height: 1.6;
   max-width: 100%;
+  word-break: break-word;
 }
 
 .hero-buttons {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap; /* Evita quebra abrupta */
   gap: 1rem;
   justify-content: center;
   align-items: center;
@@ -228,15 +438,32 @@ body {
   box-sizing: border-box;
 }
 
+/* === .btn-primary === */
 .btn-primary {
   background: var(--primary-color);
-  color: white;
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.3);
+  transition: var(--theme-transition), transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* === Hover === */
+.btn-primary:hover {
+  background: var(--accent-color);
+  box-shadow: 0 6px 12px -1px rgba(99, 102, 241, 0.4);
+  transform: translateY(-2px);
 }
 
 .btn-secondary {
   background-color: transparent;
   color: var(--text-primary);
   border: 1px solid var(--text-secondary);
+}
+
+.btn-secondary:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  filter: brightness(1.2);
 }
 
 .hero-image {
@@ -247,13 +474,15 @@ body {
 }
 
 .image-placeholder {
-  width: 280px;
-  height: 280px;
+  /* Responsivo: cresce até 280px mas não ultrapassa o viewport */
+  width: min(280px, 80vw);
+  height: min(280px, 80vw);
   border-radius: 50%;
   background: var(--dark-tertiary);
   position: relative;
   overflow: hidden;
   object-fit: cover;
+  flex-shrink: 0;
 }
 
 .image-placeholder img {
@@ -285,7 +514,20 @@ body {
 /* Sobre Section */
 .sobre {
   padding: 4rem 1.5rem;
-  background-color: var(--dark-secondary);
+  background-color: transparent;
+  transition: var(--theme-transition);
+}
+
+/* Flex com wrap para evitar quebras abruptas em seções de conteúdo */
+.sobre-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.sobre-text {
+  flex: 1 1 300px;
+  min-width: 0;
 }
 
 .sobre-text p {
@@ -305,8 +547,9 @@ body {
 .stat {
   text-align: center;
   padding: 1.5rem;
-  background-color: var(--dark-tertiary);
+  background-color: var(--bg-tertiary);
   border-radius: 8px;
+  transition: var(--theme-transition);
 }
 
 .stat-number {
@@ -325,7 +568,8 @@ body {
 /* Habilidades Section */
 .habilidades {
   padding: 4rem 1.5rem;
-  background-color: var(--dark-bg);
+  background-color: transparent;
+  transition: var(--theme-transition);
 }
 
 .habilidades-grid {
@@ -334,11 +578,18 @@ body {
   gap: 1.5rem;
 }
 
+/* === .habilidade-card === */
 .habilidade-card {
-  background-color: var(--dark-secondary);
+  background-color: var(--bg-secondary);
   padding: 2rem;
   border-radius: 8px;
-  border: 1px solid var(--dark-tertiary);
+  border: var(--card-border);
+  box-shadow: var(--card-shadow);
+  transition: var(--theme-transition), transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.habilidade-card:hover {
+  transform: translateY(-3px);
 }
 
 .habilidade-icon {
@@ -373,7 +624,8 @@ body {
 /* Projetos Section */
 .projetos {
   padding: 4rem 1.5rem;
-  background-color: var(--dark-secondary);
+  background-color: transparent;
+  transition: var(--theme-transition);
 }
 
 .projetos-grid {
@@ -382,20 +634,27 @@ body {
   gap: 2rem;
 }
 
+/* === .projeto-card === */
 .projeto-card {
-  background-color: var(--dark-tertiary);
+  background-color: var(--bg-secondary);
   border-radius: 12px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: var(--card-border);
+  box-shadow: var(--card-shadow);
   display: flex;
   flex-direction: column;
   height: 100%;
+  transition: var(--theme-transition), transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.projeto-card:hover {
+  transform: translateY(-4px);
 }
 
 .projeto-image {
   width: 100%;
   height: 200px;
-  background: var(--dark-bg);
+  background: var(--bg-primary);
   overflow: hidden;
 }
 
@@ -434,30 +693,41 @@ body {
 }
 
 .tag {
-  background-color: var(--dark-bg);
+  background-color: var(--bg-primary);
   color: var(--primary-color);
   padding: 0.3rem 0.8rem;
   border-radius: 20px;
   font-size: 0.8rem;
   border: 1px solid var(--primary-color);
+  transition: var(--theme-transition);
 }
 
+/* === .projeto-link — hover com brilho (PRD §3.4) === */
 .projeto-link {
   color: var(--primary-color);
   text-decoration: none;
   font-weight: 600;
   display: inline-block;
+  transition: filter 0.2s ease, color 0.2s ease;
+}
+
+.projeto-link:hover {
+  filter: brightness(1.2);
+  text-decoration: underline;
 }
 
 /* Contato Section */
 .contato {
   padding: 4rem 1.5rem;
-  background-color: var(--dark-bg);
+  background-color: transparent;
+  transition: var(--theme-transition);
 }
 
+/* Flex com wrap para evitar quebras abruptas */
 .contato-content {
-  display: grid;
-  grid-template-columns: 1fr; /* Mobile: 1 coluna */
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
   gap: 3rem;
 }
 
@@ -503,17 +773,32 @@ body {
   margin-top: 2rem;
 }
 
+/* === .social-link === */
 .social-link {
   padding: 0.8rem 1.5rem;
-  background-color: var(--dark-secondary);
+  background-color: var(--bg-secondary);
   color: var(--text-primary);
   text-decoration: none;
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: var(--card-border);
+  box-shadow: var(--card-shadow);
   width: 100%;
   text-align: center;
   font-size: 0.9375rem; /* 15px em 16px base */
   font-weight: 500;
+  transition: var(--theme-transition), filter 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.social-link:hover {
+  background-color: var(--bg-tertiary);
+  color: var(--primary-color);
+}
+
+.social-link:hover {
+  background-color: var(--bg-tertiary);
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  filter: brightness(1.2);
 }
 
 .contato-form {
@@ -526,20 +811,30 @@ body {
 .form-group textarea {
   width: 100%;
   padding: 1rem;
-  background-color: var(--dark-secondary);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: var(--bg-secondary);
+  border: var(--card-border);
+  box-shadow: var(--card-shadow);
   border-radius: 8px;
   color: var(--text-primary);
   font-size: 0.9375rem; /* 15px em 16px base */
   font-family: "Poppins", sans-serif;
+  transition: var(--theme-transition), border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
 }
 
 /* Footer */
 #footer {
-  background-color: var(--dark-secondary);
+  background-color: var(--bg-primary);
   padding: 2rem;
   text-align: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: var(--card-border);
+  transition: var(--theme-transition);
 }
 
 #footer p {
@@ -552,11 +847,17 @@ body {
   color: #ef4444;
 }
 
+
+
 /* =========================================
-   TABLET RESPONSIVENESS (768px - 1024px)
+   TABLET RESPONSIVENESS (744px - 1024px)
+   Nota: 744px em vez de 768px para compensar
+   a barra de rolagem vertical (até 17px no
+   Windows e 15px no macOS) que reduz o
+   viewport real abaixo de 768px.
    ========================================= */
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 744px) {
   /* Base font-size para tablet */
   body {
     font-size: 17px;
@@ -578,10 +879,18 @@ body {
   .nav-menu {
     position: static;
     height: auto;
+    width: auto;
     flex-direction: row;
+    flex-shrink: 1;    /* Permite comprimir para não causar overflow */
+    flex-wrap: wrap;   /* Quebra em 2 linhas se necessário */
     left: 0;
+    padding-top: 0; /* Remove o padding do menu mobile */
     border-top: none;
-    gap: 2rem;
+    gap: 1rem 1.5rem;  /* Menor no tablet estreito */
+    overflow-y: visible;
+    background-color: transparent !important;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
 
   .nav-link {
@@ -678,8 +987,9 @@ body {
     padding: 5rem 2rem;
   }
 
+  /* PRD: Tablet → 2 colunas */
   .projetos-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
   }
 
@@ -693,8 +1003,15 @@ body {
   }
 
   .contato-content {
-    grid-template-columns: 1fr 1fr;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 4rem;
+  }
+
+  .contato-info,
+  .contato-form {
+    flex: 1 1 300px;
+    min-width: 0;
   }
 
   .contato-item {
@@ -845,9 +1162,13 @@ body {
     min-height: 600px;
   }
 
+  /* PRD: Desktop > 1024px → Layout original (3 colunas) com max-width: 1200px */
   .projetos-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: 3rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .projeto-image {
@@ -879,6 +1200,7 @@ body {
   }
 
   .contato-content {
+    flex-direction: row;
     gap: 5rem;
   }
 
