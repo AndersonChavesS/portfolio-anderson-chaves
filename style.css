@@ -171,6 +171,8 @@
   transition: var(--theme-transition), border-color 0.3s ease, transform 0.2s ease;
   white-space: nowrap;
   flex-shrink: 0;
+  position: relative;
+  z-index: 1002;
 }
 
 #theme-toggle:hover {
@@ -236,7 +238,6 @@ body {
   z-index: 1000;
   border-bottom: 1px solid var(--border-color);
   transition: background-color 0.4s ease, border-color 0.3s ease;
-  overflow: hidden;
 }
 
 .light-theme .header {
@@ -267,10 +268,14 @@ body {
 }
 
 .menu-icon {
-  display: block; /* Visível no mobile */
+  display: flex; /* Visível no mobile e facilita alinhamento */
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   padding: 10px;
-  z-index: 1001;
+  z-index: 1002;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .nav-icon {
@@ -324,7 +329,7 @@ body {
   width: 100vw;
   height: 100vh;
   padding-top: 80px; /* Espaço para o header fixo */
-  background-color: rgba(15, 23, 42, 0.95);
+  background-color: var(--bg-primary);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   display: flex;
@@ -333,14 +338,14 @@ body {
   justify-content: center;
   transition: left 0.3s ease-in-out, background-color 0.3s ease;
   border-top: 1px solid var(--border-color);
-  z-index: 998;
+  z-index: 1001;
   gap: 2rem;
   list-style: none;
   overflow-y: auto;
 }
 
 .light-theme .nav-menu {
-  background-color: rgba(248, 250, 252, 0.95);
+  background-color: var(--bg-primary);
 }
 
 .menu-toggle:checked ~ .nav-menu {
@@ -348,7 +353,7 @@ body {
 }
 
 .nav-link {
-  color: var(--text-secondary);
+  color: var(--text-primary);
   text-decoration: none;
   font-weight: 500;
   transition: all 0.3s ease;
@@ -357,7 +362,7 @@ body {
 }
 
 .nav-link:hover {
-  color: var(--text-primary);
+  color: var(--primary-color);
 }
 
 /* Hero Section */
