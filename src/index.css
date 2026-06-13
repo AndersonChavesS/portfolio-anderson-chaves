@@ -366,8 +366,9 @@ section {
 .hero {
   min-height: 100svh;
   display: flex;
-  align-items: center;
-  padding-top: 70px;
+  flex-direction: column;
+  padding-top: 110px;
+  padding-bottom: 40px;
   position: relative;
   z-index: 1;
 }
@@ -377,6 +378,8 @@ section {
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: center;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .hero-badge {
@@ -1204,7 +1207,7 @@ footer {
 
 /* ── RESPONSIVE ──────────────────────────────── */
 @media (max-width: 900px) {
-  .hero-inner { grid-template-columns: 1fr; text-align: center; }
+  .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
   .hero-description { max-width: 100%; }
   .hero-actions { justify-content: center; }
   .hero-visual { order: -1; }
