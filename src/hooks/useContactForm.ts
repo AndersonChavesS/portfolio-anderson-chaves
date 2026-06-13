@@ -67,7 +67,7 @@ function validateAll(values: FormValues): FormErrors {
 
 // ── Hook principal ────────────────────────────────────────────────────────────
 
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xbdepnjj'
+const FORMSPREE_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT || ''
 
 const INITIAL_VALUES: FormValues = {
   name: '',
