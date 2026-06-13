@@ -1,0 +1,1648 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+:root {
+  /* ============================================================
+     SLATE & INDIGO PROFESSIONAL PALETTE
+     ============================================================ */
+
+  --bg-primary: #0F172A;
+  --bg-secondary: #1E293B;
+  --bg-tertiary: #1E293B;
+  
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  
+  --primary-color: #6366F1;
+  --accent-color: #818CF8;
+  
+  --border-color: #334155;
+  --card-border: 1px solid var(--border-color);
+  --card-shadow: none;
+
+  /* Aliases legados */
+  --dark-bg: var(--bg-primary);
+  --dark-secondary: var(--bg-secondary);
+  --dark-tertiary: var(--bg-tertiary);
+
+  /* Misc */
+  --theme-transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* =========================================
+   LIGHT THEME OVERRIDES
+   ========================================= */
+.light-theme {
+  --bg-primary: #F8FAFC;
+  --bg-secondary: #FFFFFF;
+  --bg-tertiary: #F1F5F9;
+  
+  --text-primary: #0F172A;
+  --text-secondary: #64748B;
+  
+  --primary-color: #4F46E5;
+  --accent-color: #4338CA;
+  
+  --border-color: transparent;
+  --card-border: none;
+  --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+
+  --dark-bg: var(--bg-primary);
+  --dark-secondary: var(--bg-secondary);
+  --dark-tertiary: var(--bg-tertiary);
+}
+
+/* =========================================
+   ANIMATED MESH GRADIENT BACKGROUND
+   Técnica: Carrossel horizontal via background-position.
+   O gradiente de 2400px começa e termina transparente,
+   garantindo tile perfeito e loop sem salto visual.
+   ========================================= */
+
+/* --- Desativa os blobs (não usados nesta técnica) --- */
+.blob { display: none; }
+
+/* --- Container / Wrapper --- */
+.bg-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background-color: var(--bg-primary);
+  transition: background-color 0.4s ease;
+}
+
+/* --- Camada 1: gradiente nítido (referência de cor) --- */
+.bg-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  /* Tile de 2400px: transparente → Indigo → Accent → transparente */
+  background: linear-gradient(
+    90deg,
+    rgba(99, 102, 241, 0)   0px,
+    rgba(99, 102, 241, 0.5) 300px,
+    rgba(129, 140, 248, 0.5) 800px,
+    rgba(79, 70, 229, 0.5) 1200px,
+    rgba(129, 140, 248, 0.5) 1600px,
+    rgba(99, 102, 241, 0.5) 2100px,
+    rgba(99, 102, 241, 0)   2400px
+  );
+  background-size: 2400px 100%;
+  background-repeat: repeat-x;
+  opacity: 0.30;
+  animation: carousel-ltr 14s linear infinite;
+}
+
+/* --- Camada 2: a mesma, com blur forte → cria o efeito "mesh" suave --- */
+.bg-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: -15%;
+  background: linear-gradient(
+    90deg,
+    rgba(99, 102, 241, 0)   0px,
+    rgba(99, 102, 241, 0.8) 300px,
+    rgba(129, 140, 248, 0.8) 800px,
+    rgba(79, 70, 229, 0.8) 1200px,
+    rgba(129, 140, 248, 0.8) 1600px,
+    rgba(99, 102, 241, 0.8) 2100px,
+    rgba(99, 102, 241, 0)   2400px
+  );
+  background-size: 2400px 130%;
+  background-repeat: repeat-x;
+  filter: blur(90px);
+  opacity: 0.22;
+  animation: carousel-ltr 14s linear infinite;
+}
+
+/* =====================================================
+   @keyframes carousel-ltr
+   Desloca o background exatamente 1 tile (-2400px),
+   criando um loop perfeito sem salto.
+   Direção visual: cores entram pela esquerda e saem
+   pela direita (movimento de varredura esquerda→direita).
+   ===================================================== */
+@keyframes carousel-ltr {
+  from { background-position: 0px 50%;      }
+  to   { background-position: -2400px 50%;  }
+}
+
+/* ---------------------------------------------------
+   LIGHT THEME — mantém as cores primárias do projeto,
+   reduz a opacidade das camadas para preservar o
+   contraste do texto escuro sobre fundo claro.
+   --------------------------------------------------- */
+.light-theme .bg-wrapper::before {
+  opacity: 0.35;
+}
+
+.light-theme .bg-wrapper::after {
+  opacity: 0.28;
+}
+
+/* --- Acessibilidade: respeita prefers-reduced-motion --- */
+@media (prefers-reduced-motion: reduce) {
+  .bg-wrapper::before,
+  .bg-wrapper::after { animation: none; }
+}
+
+
+
+/* =========================================
+   THEME TOGGLE BUTTON
+   ========================================= */
+#theme-toggle {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.85rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: var(--theme-transition), border-color 0.3s ease, transform 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1002;
+}
+
+#theme-toggle:hover {
+  color: var(--text-primary);
+  border-color: var(--primary-color);
+  transform: scale(1.05);
+}
+
+#theme-toggle .theme-icon {
+  font-size: 1rem;
+  line-height: 1;
+  transition: transform 0.4s ease;
+}
+
+#theme-toggle:hover .theme-icon {
+  transform: rotate(20deg);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+/* Scroll suave para âncoras */
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: transparent; /* bg-wrapper fixed provê a cor base */
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  max-width: 100vw;
+  font-size: 16px; /* Base para mobile */
+  transition: var(--theme-transition);
+}
+
+.container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* =========================================
+   MOBILE FIRST STYLES (Base)
+   ========================================= */
+
+/* Header e Navegação */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  /* Glassmorphism: fundo semi-transparente */
+  background-color: rgba(15, 23, 42, 0.45); /* Mais transparência */
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 1000;
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.4s ease, border-color 0.3s ease;
+}
+
+.light-theme .header {
+  background-color: rgba(248, 250, 252, 0.45); /* Mais transparência */
+}
+
+.nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap; /* Evita quebra de linha no nav */
+  gap: 0.5rem;       /* Espaço mínimo entre elementos */
+}
+
+.logo {
+  font-size: 1.625rem; /* 26px em 16px base */
+  font-weight: bold;
+  color: var(--text-primary);
+  flex-shrink: 0; /* Não comprime o logo */
+}
+
+/* Menu Sanduíche (Mobile Default) */
+.menu-toggle {
+  display: none; /* Checkbox sempre invisível */
+}
+
+.menu-icon {
+  display: flex; /* Visível no mobile e facilita alinhamento */
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 1002;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.nav-icon {
+  background: var(--text-primary);
+  display: block;
+  height: 2px;
+  position: relative;
+  transition: background 0.2s ease-out;
+  width: 24px;
+}
+
+.nav-icon::before,
+.nav-icon::after {
+  background: var(--text-primary);
+  content: "";
+  display: block;
+  height: 100%;
+  position: absolute;
+  transition: all 0.3s ease-out;
+  width: 100%;
+}
+
+.nav-icon::before {
+  top: 7px;
+}
+
+.nav-icon::after {
+  top: -7px;
+}
+
+/* Animação do Menu */
+.menu-toggle:checked ~ .menu-icon .nav-icon {
+  background: transparent;
+}
+
+.menu-toggle:checked ~ .menu-icon .nav-icon::before {
+  transform: rotate(-45deg);
+  top: 0;
+}
+
+.menu-toggle:checked ~ .menu-icon .nav-icon::after {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+/* Menu de Navegação*/
+.nav-menu {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 100vw;
+  height: 100vh;
+  padding-top: 80px; /* Espaço para o header fixo */
+  background-color: var(--bg-primary);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: left 0.3s ease-in-out, background-color 0.3s ease;
+  border-top: 1px solid var(--border-color);
+  z-index: 1001;
+  gap: 2rem;
+  list-style: none;
+  overflow-y: auto;
+}
+
+.light-theme .nav-menu {
+  background-color: var(--bg-primary);
+}
+
+.menu-toggle:checked ~ .nav-menu {
+  left: 0;
+}
+
+.nav-link {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+  font-size: 1.5rem;
+}
+
+.nav-link:hover {
+  color: var(--primary-color);
+}
+
+/* Hero Section */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 1rem 3rem;
+  text-align: center;
+  gap: 3rem;
+}
+
+#hero-content {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Garante que não ultrapasse a viewport */
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.hero-title {
+  font-size: 2.25rem; /* 36px em 16px base */
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+.highlight {
+  color: var(--primary-color);
+}
+
+#hero-subtitle {
+  font-size: 1.25rem; /* 20px em 16px base */
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  word-break: break-word;
+}
+
+#hero-description {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  max-width: 100%;
+  word-break: break-word;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap; /* Evita quebra abrupta */
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.btn {
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  width: 100%;
+  text-align: center;
+  min-height: 50px;
+  box-sizing: border-box;
+}
+
+/* === .btn-primary === */
+.btn-primary {
+  background: var(--primary-color);
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.3);
+  transition: var(--theme-transition), transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* === Hover === */
+.btn-primary:hover {
+  background: var(--accent-color);
+  box-shadow: 0 6px 12px -1px rgba(99, 102, 241, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--text-secondary);
+}
+
+.btn-secondary:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  filter: brightness(1.2);
+}
+
+.hero-image {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-placeholder {
+  /* Responsivo: cresce até 280px mas não ultrapassa o viewport */
+  width: min(280px, 80vw);
+  height: min(280px, 80vw);
+  border-radius: 50%;
+  background: var(--dark-tertiary);
+  position: relative;
+  overflow: hidden;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.image-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Section Title */
+.section-title {
+  font-size: 1.875rem; /* 30px em 16px base */
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background: var(--primary-color);
+}
+
+/* Sobre Section */
+.sobre {
+  padding: 4rem 1.5rem;
+  background-color: transparent;
+  transition: var(--theme-transition);
+}
+
+/* Flex com wrap para evitar quebras abruptas em seções de conteúdo */
+.sobre-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.sobre-text {
+  flex: 1 1 300px;
+  min-width: 0;
+}
+
+.sobre-text p {
+  font-size: 1.0625rem; /* 17px em 16px base */
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.sobre-stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.stat {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: var(--bg-tertiary);
+  border-radius: 8px;
+  transition: var(--theme-transition);
+}
+
+.stat-number {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.stat-label {
+  display: block;
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+}
+
+/* Habilidades Section */
+.habilidades {
+  padding: 4rem 1.5rem;
+  background-color: transparent;
+  transition: var(--theme-transition);
+}
+
+.habilidades-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* Mobile: 1 coluna */
+  gap: 1.5rem;
+}
+
+/* === .habilidade-card === */
+.habilidade-card {
+  background-color: var(--bg-secondary);
+  padding: 2rem;
+  border-radius: 8px;
+  border: var(--card-border);
+  box-shadow: var(--card-shadow);
+  transition: var(--theme-transition), transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.habilidade-card:hover {
+  transform: translateY(-3px);
+}
+
+.habilidade-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.habilidade-card h3 {
+  font-size: 1.375rem; /* 22px em 16px base */
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.habilidade-card ul {
+  list-style: none;
+}
+
+.habilidade-card li {
+  color: var(--text-secondary);
+  margin-bottom: 0.8rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.habilidade-card li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--primary-color);
+}
+
+/* Projetos Section */
+.projetos {
+  padding: 4rem 1.5rem;
+  background-color: transparent;
+  transition: var(--theme-transition);
+}
+
+.projetos-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* Mobile: 1 coluna */
+  gap: 2rem;
+}
+
+/* === .projeto-card === */
+.projeto-card {
+  background-color: var(--bg-secondary);
+  border-radius: 12px;
+  overflow: hidden;
+  border: var(--card-border);
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: var(--theme-transition), transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.projeto-card:hover {
+  transform: translateY(-4px);
+}
+
+.projeto-image {
+  width: 100%;
+  height: 200px;
+  background: var(--bg-primary);
+  overflow: hidden;
+}
+
+.projeto-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.projeto-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.projeto-content h3 {
+  font-size: 1.375rem; /* 22px em 16px base */
+  margin-bottom: 0.8rem;
+  color: var(--text-primary);
+}
+
+.projeto-content p {
+  color: var(--text-secondary);
+  margin-bottom: 1.2rem;
+  font-size: 0.9375rem; /* 15px em 16px base */
+}
+
+.projeto-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.2rem;
+  margin-top: auto;
+}
+
+.tag {
+  background-color: var(--bg-primary);
+  color: var(--primary-color);
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  border: 1px solid var(--primary-color);
+  transition: var(--theme-transition);
+}
+
+/* === .projeto-link — hover com brilho (PRD §3.4) === */
+.projeto-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  transition: filter 0.2s ease, color 0.2s ease;
+}
+
+.projeto-link:hover {
+  filter: brightness(1.2);
+  text-decoration: underline;
+}
+
+/* Contato Section */
+.contato {
+  padding: 4rem 1.5rem;
+  background-color: transparent;
+  transition: var(--theme-transition);
+}
+
+/* Flex com wrap para evitar quebras abruptas */
+.contato-content {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.contato-info h3 {
+  font-size: 1.375rem; /* 22px em 16px base */
+  margin-bottom: 1rem;
+}
+
+.contato-info > p {
+  font-size: 0.9375rem; /* 15px em 16px base */
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.contato-item {
+  display: flex;
+  flex-direction: column; /* Mobile: Stacked */
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.contato-item h4 {
+  font-size: 1rem; /* 16px em 16px base */
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.contato-item p {
+  font-size: 0.9375rem; /* 15px em 16px base */
+  color: var(--text-secondary);
+}
+
+.contato-icon {
+  font-size: 1.5rem; /* 24px em 16px base */
+  color: var(--primary-color);
+}
+
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+/* === .social-link === */
+.social-link {
+  padding: 0.8rem 1.5rem;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  text-decoration: none;
+  border-radius: 8px;
+  border: var(--card-border);
+  box-shadow: var(--card-shadow);
+  width: 100%;
+  text-align: center;
+  font-size: 0.9375rem; /* 15px em 16px base */
+  font-weight: 500;
+  transition: var(--theme-transition), filter 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.social-link:hover {
+  background-color: var(--bg-tertiary);
+  color: var(--primary-color);
+}
+
+.social-link:hover {
+  background-color: var(--bg-tertiary);
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  filter: brightness(1.2);
+}
+
+.contato-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--bg-secondary);
+  border: var(--card-border);
+  box-shadow: var(--card-shadow);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 0.9375rem; /* 15px em 16px base */
+  font-family: "Poppins", sans-serif;
+  transition: var(--theme-transition), border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+/* Footer */
+#footer {
+  background-color: var(--bg-primary);
+  padding: 2rem;
+  text-align: center;
+  border-top: var(--card-border);
+  transition: var(--theme-transition);
+}
+
+#footer p {
+  font-size: 0.875rem; /* 14px em 16px base */
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+#footer i {
+  color: #ef4444;
+}
+
+
+
+/* =========================================
+   TABLET RESPONSIVENESS (744px - 1024px)
+   Nota: 744px em vez de 768px para compensar
+   a barra de rolagem vertical (até 17px no
+   Windows e 15px no macOS) que reduz o
+   viewport real abaixo de 768px.
+   ========================================= */
+
+@media screen and (min-width: 744px) {
+  /* Base font-size para tablet */
+  body {
+    font-size: 17px;
+  }
+
+  /* Header e Navegação */
+  .logo {
+    font-size: 1.76rem; /* 30px em 17px base */
+  }
+
+  .nav-link {
+    font-size: 1.06rem; /* 18px em 17px base */
+  }
+
+  .menu-icon {
+    display: none; /* Remove menu hamburguer no tablet */
+  }
+
+  .nav-menu {
+    position: static;
+    height: auto;
+    width: auto;
+    flex-direction: row;
+    flex-shrink: 1;    /* Permite comprimir para não causar overflow */
+    flex-wrap: wrap;   /* Quebra em 2 linhas se necessário */
+    left: 0;
+    padding-top: 0; /* Remove o padding do menu mobile */
+    border-top: none;
+    gap: 1rem 1.5rem;  /* Menor no tablet estreito */
+    overflow-y: visible;
+    background-color: transparent !important;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .nav-link {
+    font-size: 1rem;
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  /* Hero Section */
+  .hero {
+    flex-direction: row;
+    padding: 6rem 2rem 3rem;
+    gap: 4rem;
+  }
+
+  #hero-content {
+    width: 55%;
+    max-width: 600px;
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .hero-title {
+    font-size: 2.65rem; /* ~45px em 17px base */
+  }
+
+  #hero-subtitle {
+    font-size: 1.35rem; /* ~23px em 17px base */
+  }
+
+  #hero-description {
+    font-size: 1.06rem; /* ~18px em 17px base */
+  }
+
+  .hero-buttons {
+    flex-direction: row;
+    width: auto;
+  }
+
+  .btn {
+    width: auto;
+    padding: 1rem 2.5rem;
+    font-size: 1rem; /* Mantém proporção em 18px base */
+  }
+
+  .hero-image {
+    width: 45%;
+  }
+
+  .image-placeholder {
+    width: 350px;
+    height: 350px;
+  }
+
+  /* Sobre Section */
+  .sobre {
+    padding: 5rem 2rem;
+  }
+
+  .sobre-text p {
+    font-size: 1.06rem; /* ~18px em 17px base */
+  }
+
+  .sobre-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  /* Habilidades Section */
+  .habilidades {
+    padding: 5rem 2rem;
+  }
+
+  .habilidades-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  /* Projetos Section */
+  .projetos {
+    padding: 5rem 2rem;
+  }
+
+  /* PRD: Tablet → 2 colunas */
+  .projetos-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .projeto-image {
+    height: 220px;
+  }
+
+  /* Contato Section */
+  .contato {
+    padding: 5rem 2rem;
+  }
+
+  .contato-content {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4rem;
+  }
+
+  .contato-info,
+  .contato-form {
+    flex: 1 1 300px;
+    min-width: 0;
+  }
+
+  .contato-item {
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  .social-link {
+    width: auto;
+  }
+}
+
+/* =========================================
+   DESKTOP RESPONSIVENESS (1024px - 1920px)
+   ========================================= */
+
+@media screen and (min-width: 1024px) {
+  /* Base font-size para desktop */
+  body {
+    font-size: 18px;
+  }
+
+  /* Header */
+  .logo {
+    font-size: 1.89rem; /* 34px em 18px base */
+  }
+
+  .nav-link {
+    font-size: 1.11rem; /* 20px em 18px base */
+  }
+
+  /* Container Adjustments */
+  .container {
+    max-width: 1200px;
+    padding: 0 40px;
+  }
+
+  /* Hero Section */
+  .hero {
+    padding: 8rem 3rem 4rem;
+    gap: 5rem;
+  }
+
+  #hero-content {
+    width: 50%;
+    max-width: 650px;
+  }
+
+  .hero-title {
+    font-size: 2.78rem; /* ~50px em 18px base */
+  }
+
+  #hero-subtitle {
+    font-size: 1.39rem; /* ~25px em 18px base */
+  }
+
+  #hero-description {
+    font-size: 1.11rem; /* ~20px em 18px base */
+    max-width: 550px;
+  }
+
+  .hero-image {
+    width: 50%;
+  }
+
+  .image-placeholder {
+    width: 400px;
+    height: 400px;
+  }
+
+  /* Section Title */
+  .section-title {
+    font-size: 2.22rem; /* ~40px em 18px base */
+    margin-bottom: 3rem;
+  }
+
+  .section-title::after {
+    width: 80px;
+    height: 3px;
+  }
+
+  /* Sobre Section */
+  .sobre {
+    padding: 6rem 3rem;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+  }
+
+  .sobre .container {
+    width: 100%;
+  }
+
+  .sobre-text p {
+    font-size: 1.11rem; /* ~20px em 18px base */
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .sobre-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Habilidades Section */
+  .habilidades {
+    padding: 6rem 3rem;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+  }
+
+  .habilidades .container {
+    width: 100%;
+  }
+
+  .habilidades-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .habilidade-card {
+    padding: 2.5rem;
+  }
+
+  .habilidade-icon {
+    font-size: 3rem;
+  }
+
+  .habilidade-card h3 {
+    font-size: 1.44rem; /* ~26px em 18px base */
+  }
+
+  .habilidade-card li {
+    font-size: 1.06rem; /* ~19px em 18px base */
+  }
+
+  /* Projetos Section */
+  .projetos {
+    padding: 6rem 3rem;
+    min-height: 600px;
+  }
+
+  /* PRD: Desktop > 1024px → Layout original (3 colunas) com max-width: 1200px */
+  .projetos-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .projeto-image {
+    height: 240px;
+  }
+
+  .projeto-content {
+    padding: 2rem;
+  }
+
+  .projeto-content h3 {
+    font-size: 1.39rem; /* ~25px em 18px base */
+  }
+
+  .projeto-content p {
+    font-size: 1rem;
+  }
+
+  /* Contato Section */
+  .contato {
+    padding: 6rem 3rem;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+  }
+
+  .contato .container {
+    width: 100%;
+  }
+
+  .contato-content {
+    flex-direction: row;
+    gap: 5rem;
+  }
+
+  .contato-info h3 {
+    font-size: 1.67rem; /* ~30px em 18px base */
+  }
+
+  .contato-info p {
+    font-size: 1.06rem; /* ~19px em 18px base */
+  }
+
+  .contato-item h4 {
+    font-size: 1.06rem; /* ~19px em 18px base */
+  }
+
+  .contato-item p {
+    font-size: 1rem;
+  }
+
+  /* Footer */
+  #footer {
+    padding: 3rem 2rem;
+  }
+
+  #footer p {
+    font-size: 1rem;
+  }
+}
+
+/* =========================================
+   LARGE DESKTOP (1440px - 1920px)
+   ========================================= */
+
+@media screen and (min-width: 1440px) {
+  /* Base font-size para large desktop */
+  body {
+    font-size: 19px;
+  }
+
+  /* Header */
+  .logo {
+    font-size: 2rem; /* 38px em 19px base */
+  }
+
+  .nav-link {
+    font-size: 1.16rem; /* 22px em 19px base */
+  }
+
+  /* Container Adjustments */
+  .container {
+    max-width: 1400px;
+    padding: 0 60px;
+  }
+
+  /* Hero Section */
+  .hero {
+    padding: 10rem 4rem 5rem;
+    gap: 6rem;
+  }
+
+  .hero-title {
+    font-size: 2.89rem; /* ~55px em 19px base */
+  }
+
+  #hero-subtitle {
+    font-size: 1.42rem; /* ~27px em 19px base */
+  }
+
+  #hero-description {
+    font-size: 1.16rem; /* ~22px em 19px base */
+  }
+
+  .btn {
+    font-size: 1.05rem; /* ~20px em 19px base */
+    padding: 1.2rem 3rem;
+  }
+
+  .image-placeholder {
+    width: 450px;
+    height: 450px;
+  }
+
+  /* Section Padding */
+  .sobre,
+  .habilidades,
+  .projetos,
+  .contato {
+    padding: 7rem 4rem;
+    min-height: 700px;
+  }
+
+  /* Section Title */
+  .section-title {
+    font-size: 2.37rem; /* ~45px em 19px base */
+    margin-bottom: 4rem;
+  }
+
+  /* Habilidades */
+  .habilidades-grid {
+    max-width: 1100px;
+    gap: 4rem;
+  }
+
+  /* Projetos */
+  .projetos-grid {
+    gap: 3.5rem;
+  }
+
+  .projeto-image {
+    height: 260px;
+  }
+
+  .projeto-content h3 {
+    font-size: 1.47rem; /* ~28px em 19px base */
+  }
+
+  .projeto-content p {
+    font-size: 1rem; /* ~19px em 19px base */
+  }
+}
+
+/* =========================================
+   4K RESPONSIVENESS (1920px+)
+   ========================================= */
+
+@media screen and (min-width: 1920px) {
+  /* Base font-size para 4K */
+  body {
+    font-size: 24px;
+  }
+
+  /* Container Adjustments */
+  .container {
+    max-width: 1800px;
+    padding: 0 80px;
+  }
+
+  /* Navigation */
+  .nav {
+    padding: 1.5rem 80px;
+  }
+
+  .logo {
+    font-size: 2.08rem; /* 50px em 24px base */
+  }
+
+  .nav-link {
+    font-size: 1.25rem; /* 30px em 24px base */
+  }
+
+  /* Hero Section */
+  .hero {
+    min-height: 100vh;
+    padding: 12rem 5rem 6rem;
+    gap: 8rem;
+  }
+
+  #hero-content {
+    max-width: 900px;
+  }
+
+  .hero-title {
+    font-size: 3.33rem; /* 80px em 24px base */
+    margin-bottom: 1.5rem;
+  }
+
+  #hero-subtitle {
+    font-size: 1.67rem; /* 40px em 24px base */
+    margin-bottom: 2rem;
+  }
+
+  #hero-description {
+    font-size: 1.33rem; /* 32px em 24px base */
+    max-width: 750px;
+    margin-bottom: 3rem;
+  }
+
+  .btn {
+    font-size: 1.25rem; /* 30px em 24px base */
+    padding: 1.5rem 3.5rem;
+  }
+
+  .image-placeholder {
+    width: 550px;
+    height: 550px;
+  }
+
+  /* Section Padding */
+  .sobre,
+  .habilidades,
+  .projetos,
+  .contato {
+    padding: 10rem 5rem;
+    min-height: 900px;
+  }
+
+  /* Section Title */
+  .section-title {
+    font-size: 2.92rem; /* 70px em 24px base */
+    margin-bottom: 5rem;
+  }
+
+  .section-title::after {
+    width: 100px;
+    height: 4px;
+  }
+
+  /* Sobre Section */
+  .sobre-text p {
+    font-size: 1.33rem; /* 32px em 24px base */
+    max-width: 1200px;
+    margin-bottom: 2rem;
+  }
+
+  .sobre-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3.5rem;
+    max-width: 1300px;
+  }
+
+  .stat {
+    padding: 2.5rem;
+  }
+
+  .stat-number {
+    font-size: 3rem; /* 72px em 24px base */
+  }
+
+  .stat-label {
+    font-size: 1.17rem; /* 28px em 24px base */
+  }
+
+  /* Habilidades Section */
+  .habilidades-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5rem;
+    max-width: 1500px;
+  }
+
+  .habilidade-card {
+    padding: 3.5rem;
+  }
+
+  .habilidade-icon {
+    font-size: 3.5rem; /* 84px em 24px base */
+    margin-bottom: 1.5rem;
+  }
+
+  .habilidade-card h3 {
+    font-size: 1.83rem; /* 44px em 24px base */
+    margin-bottom: 1.5rem;
+  }
+
+  .habilidade-card li {
+    font-size: 1.25rem; /* 30px em 24px base */
+    margin-bottom: 1rem;
+  }
+
+  /* Projetos Section */
+  .projetos-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem;
+  }
+
+  .projeto-image {
+    height: 320px;
+  }
+
+  .projeto-content {
+    padding: 2.5rem;
+  }
+
+  .projeto-content h3 {
+    font-size: 1.75rem; /* 42px em 24px base */
+    margin-bottom: 1rem;
+  }
+
+  .projeto-content p {
+    font-size: 1.17rem; /* 28px em 24px base */
+    margin-bottom: 1.5rem;
+  }
+
+  .projeto-tags {
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .tag {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.92rem; /* 22px em 24px base */
+  }
+
+  .projeto-link {
+    font-size: 1.17rem; /* 28px em 24px base */
+  }
+
+  /* Contato Section */
+  .contato-content {
+    gap: 6rem;
+  }
+
+  .contato-info h3 {
+    font-size: 2rem; /* 48px em 24px base */
+    margin-bottom: 1.5rem;
+  }
+
+  .contato-info > p {
+    font-size: 1.25rem; /* 30px em 24px base */
+    margin-bottom: 2rem;
+  }
+
+  .contato-items {
+    margin-bottom: 2rem;
+  }
+
+  .contato-item {
+    margin-bottom: 2rem;
+  }
+
+  .contato-icon {
+    font-size: 1.67rem; /* 40px em 24px base */
+  }
+
+  .contato-item h4 {
+    font-size: 1.25rem; /* 30px em 24px base */
+    margin-bottom: 0.3rem;
+  }
+
+  .contato-item p {
+    font-size: 1.17rem; /* 28px em 24px base */
+  }
+
+  .social-links {
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .social-link {
+    padding: 1.2rem 2rem;
+    font-size: 1.17rem; /* 28px em 24px base */
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 1.5rem;
+    font-size: 1.17rem; /* 28px em 24px base */
+  }
+
+  .form-group textarea {
+    min-height: 200px;
+  }
+
+  /* Footer */
+  #footer {
+    padding: 4rem 3rem;
+  }
+
+  #footer p {
+    font-size: 1.17rem; /* 28px em 24px base */
+  }
+}
+
+/* =========================================
+   ULTRA-WIDE 4K (2560px+)
+   ========================================= */
+
+@media screen and (min-width: 2560px) {
+  /* Base font-size para Ultra-wide 4K */
+  body {
+    font-size: 28px;
+  }
+
+  /* Container Adjustments */
+  .container {
+    max-width: 2400px;
+    padding: 0 120px;
+  }
+
+  /* Navigation */
+  .nav {
+    padding: 2rem 120px;
+  }
+
+  .logo {
+    font-size: 2.43rem; /* 68px em 28px base */
+  }
+
+  .nav-link {
+    font-size: 1.43rem; /* 40px em 28px base */
+  }
+
+  /* Hero Section */
+  .hero {
+    padding: 15rem 6rem 8rem;
+  }
+
+  .hero-title {
+    font-size: 3.57rem; /* 100px em 28px base */
+  }
+
+  #hero-subtitle {
+    font-size: 1.79rem; /* 50px em 28px base */
+  }
+
+  #hero-description {
+    font-size: 1.43rem; /* 40px em 28px base */
+    max-width: 900px;
+  }
+
+  .image-placeholder {
+    width: 650px;
+    height: 650px;
+  }
+
+  /* Section Padding */
+  .sobre,
+  .habilidades,
+  .projetos,
+  .contato {
+    padding: 12rem 6rem;
+    min-height: 1100px;
+  }
+
+  /* Section Title */
+  .section-title {
+    font-size: 3.21rem; /* 90px em 28px base */
+  }
+
+  /* Projetos Grid - 4 columns for ultra-wide */
+  .projetos-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5rem;
+    max-width: 2200px;
+    margin: 0 auto;
+  }
+
+  .projeto-image {
+    height: 380px;
+  }
+}
