@@ -16,7 +16,7 @@ const THEME_OPTIONS = [
 ]
 
 export default function Navbar() {
-  const { theme, setTheme, resolved } = useTheme()
+  const { theme, setTheme } = useTheme()
   const [menuOpen, setMenuOpen] = useState(false)
   const [dropOpen, setDropOpen] = useState(false)
   const [active, setActive] = useState('#inicio')

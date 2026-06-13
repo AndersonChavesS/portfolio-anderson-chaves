@@ -23,8 +23,6 @@ export default function ParticleCanvas() {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    const isDark = document.documentElement.getAttribute('data-theme') !== 'light'
-
     const PARTICLE_COUNT = 80
     const MAX_DIST = 130
     const REPEL_RADIUS = 100
